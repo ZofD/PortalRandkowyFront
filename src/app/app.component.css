@@ -1,0 +1,110 @@
+nav {
+  background-color: rgba(245, 245, 245, 0.96);
+  padding: 50px 0;
+}
+
+.logo {
+  background-image: url("src/assets/logIn/serce-ooooo.png");
+  background-color: rgba(245, 245, 245, 0) !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-bottom: 0;
+}
+
+.radio {
+  margin-top: 4px;
+  margin-bottom: 27px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+ng-form {
+  margin-bottom: 10px;
+}
+
+input[type=text], ng-form input[type=password], input[type=email] {
+  width: 100%;
+}
+
+input[type=submit] {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 30px;
+}
+
+/*tresc*/
+
+main > section {
+  background-color: rgba(255, 255, 255, 0.16);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  height: 100%;
+}
+
+main > section > div {
+  background-color: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+main > section > div > div {
+  width: 50%;
+  float: left;
+}
+
+main > section h1, main > section p {
+  text-align: center;
+  text-shadow: 1px 1px #454545;
+  color: white;
+}
+
+main > section h1{
+  font-size: 5em;
+}
+
+main > section p{
+  font-size: 1.5em;
+}
+
+main > section:nth-of-type(2) {
+  background-image: url(src/assets/logIn/Przechwytywanie.JPG);
+}
+
+main > section:nth-of-type(2) h1, main > section:nth-of-type(2) p {
+  text-align: left;
+}
+
+/*stopka*/
+
+footer > div {
+  background-color: rgba(37, 37, 37, 0.98);
+  overflow: hidden;
+  height: 100%;
+  padding: 0 19%;
+}
+
+footer > div > section {
+  border-top: 2px solid whitesmoke;
+  width: 22%;
+  margin-right: 4%;
+  margin-top: 50px;
+  float: left;
+  text-align: center;
+  color: whitesmoke;
+}
+
+footer > div > section:last-of-type {
+  margin-right: 0;
+}
+
+footer > div > section > div {
+  width: 50%;
+  float: left;
+  text-align: left;
+}
+
+footer > div > section > div:nth-of-type(even){
+  text-align: right;
+}

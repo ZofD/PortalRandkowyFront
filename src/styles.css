@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-image: url("src/assets/logIn/PrzechwytywanieZachód.JPG");
+  background-color: whitesmoke!important;
+  background-position-y: -250px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.row {
+  /*margin: 0 !important;*/
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before{
+  box-shadow: 0 0 0 1px #E61E1E, 0 0 0 0.2rem rgba(230, 30, 30, 0.25);;
+  background-color: #E61E1E;
+  border-color: #E61E1E;
+}
+
+.custom-radio .custom-control-input:active~.custom-control-label::before{
+  box-shadow: 0 0 0 1px #E61E1E, 0 0 0 0.2rem rgba(230, 30, 30, 0.25);;
+  background-color: #E61E1E;
+  border-color: #E61E1E;
+}
+
+input[type=text], input[type=email], input[type=password] {
+  background-color: rgba(255, 255, 255, 0);
+  border: 0 solid whitesmoke;
+  border-bottom: 2px solid gray;
+  border-radius: 2px;
+  padding: 3px 0;
+  color: #292b2c;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+  border-bottom: 2px solid #E61E1E;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}

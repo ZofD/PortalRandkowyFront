@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {templateJitUrl} from '@angular/compiler';
+import {getTemplateUrl} from 'codelyzer/util/ngQuery';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PortalRandkowy';
+
+  onSubmit() {
+
+  }
 }
