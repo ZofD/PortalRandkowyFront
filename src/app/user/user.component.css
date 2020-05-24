@@ -1,0 +1,18 @@
+.logo {
+  margin-bottom: 0!important;
+}
+
+nav {
+  background-color:  #E61E1E;;
+}
+
+.portrait {
+  background-color: teal;
+  /* background-image: url(img/serce-ooooo.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat; */
+  padding: 20px;
+  border: 2px solid whitesmoke;
+  border-radius: 45%;
+}
