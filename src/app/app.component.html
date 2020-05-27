@@ -1,14 +1,14 @@
 <ng-container>
   <nav class="row">
-    <ng-form (ngSubmit)="onSubmit()" class="offset-xl-2 col-xl-3">
+    <form class="offset-xl-2 col-xl-3" (ngSubmit)="onSubmit($event)">
       <div class="col-12">
-        <input type="text" required>
+        <input type="text" id="inputMailLogin" required>
         <small class="form-text text-muted">E-mail</small>
-        <input type="password" required>
+        <input type="password" id="inputPasswordLogin" required>
         <small class="form-text text-muted">Haslo</small>
-        <input class="btn btn-danger" type="submit" value="Zaloguj">
+        <input class="btn btn-danger" type="submit" value="Zaloguj" >
       </div>
-    </ng-form>
+    </form>
     <div class="logo jumbotron offset-xl-0 col-xl-2"></div>
     <ng-form class="col-xl-3" id="logInNav">
       <div class="col-12">

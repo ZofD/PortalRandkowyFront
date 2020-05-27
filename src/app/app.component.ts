@@ -10,7 +10,11 @@ import {getTemplateUrl} from 'codelyzer/util/ngQuery';
 export class AppComponent {
   title = 'PortalRandkowy';
 
-  onSubmit() {
-
+  onSubmit(event) {
+    event.preventDefault();
+    const target = event.target;
+    const email = target.querySelector('#inputMailLogin').value;
+    const password = target.querySelector('#inputPasswordLogin').value;
+    console.log(email, password);
   }
 }
