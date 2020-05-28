@@ -10,7 +10,7 @@ import { UserListComponent } from './user-list/user-list.component';
 const routes: Routes = [
   { path: '', redirectTo: '/log-in', pathMatch: 'full' },
   { path: 'log-in', component: LogInComponent},
-  { path: 'user', component: UserComponent,
+  { path: 'user/:id', component: UserComponent,
     children: [
       { path: 'user-list', component: UserListComponent },
       { path: 'blog/:id', component: BlogComponent },

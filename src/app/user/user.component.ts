@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { USERS } from '../mock-users';
-import {User} from './user';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from './user';
+import { UserService } from '../user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -8,16 +9,19 @@ import {User} from './user';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  user: User = {
-    id: 1,
-    name: 'lukasz',
-    surname: 'kwasnyt',
-    sex: 'male'
-  };
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) { }
+
+  @Input() user: User;
 
   ngOnInit(): void {
+    // tylko do testow
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.userService.getUser(1)
+      .subscribe(user => this.user = user);
   }
 
 }

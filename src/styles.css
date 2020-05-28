@@ -3,6 +3,10 @@ body {
   background-color: whitesmoke!important;
 }
 
+.container {
+  margin-top: 50px;
+}
+
 .custom-radio .custom-control-input:checked~.custom-control-label::before{
   box-shadow: 0 0 0 1px #E61E1E, 0 0 0 0.2rem rgba(230, 30, 30, 0.25);;
   background-color: #E61E1E;
