@@ -15,8 +15,6 @@ export class UserComponent implements OnInit {
     sex: 'male'
   };
 
-  users = USERS;
-
   constructor() { }
 
   ngOnInit(): void {

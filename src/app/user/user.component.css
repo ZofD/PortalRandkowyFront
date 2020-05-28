@@ -1,9 +1,19 @@
 .logo {
-  margin-bottom: 0!important;
+  width: 200px;
+}
+
+.jumbotron {
+  margin-bottom: 0;
+  padding: 3rem 2rem;
+}
+
+.jumbotron div {
+  width: 200px;
+  margin: auto;
 }
 
 nav {
-  background-color:  #E61E1E;
+  background-color:  #F02222;
   flex-direction: row;
 }
 
@@ -22,15 +32,6 @@ ul li a:hover {
   color: white;
 }
 
-.portrait {
-  background-color: teal;
-  /* background-image: url(img/serce-ooooo.png);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat; */
-  padding: 20px;
-  border: 2px solid whitesmoke;
-  border-radius: 45%;
-  width: 0;
-  float: left;
+footer {
+  margin-top: 50px;
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { USERS } from '../mock-users';
+import { UserComponent } from '../user/user.component';
 
 @Component({
   selector: 'app-user-list',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+  users = USERS;
 
   constructor() { }
 
