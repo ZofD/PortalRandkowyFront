@@ -6,11 +6,21 @@ import { UserComponent } from './user/user.component';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { LogInComponent } from './log-in/log-in.component';
+import { BlogComponent } from './blog/blog.component';
+import { SettingsComponent } from './settings/settings.component';
+import { PhotosComponent } from './photos/photos.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    LogInComponent,
+    BlogComponent,
+    SettingsComponent,
+    PhotosComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

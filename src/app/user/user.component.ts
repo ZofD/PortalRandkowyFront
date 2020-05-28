@@ -8,6 +8,12 @@ import {User} from './user';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  user: User = {
+    id: 1,
+    name: 'lukasz',
+    surname: 'kwasnyt',
+    sex: 'male'
+  };
 
   users = USERS;
 

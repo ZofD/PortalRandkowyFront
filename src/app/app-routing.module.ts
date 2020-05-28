@@ -1,15 +1,30 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
+import { UserComponent } from './user/user.component';
+import { BlogComponent } from './blog/blog.component';
+import { LogInComponent } from './log-in/log-in.component';
+import { SettingsComponent } from './settings/settings.component';
+import { PhotosComponent } from './photos/photos.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
-  // { path: 'user', component: user }
+  { path: '', redirectTo: '/log-in', pathMatch: 'full' },
+  { path: 'log-in', component: LogInComponent},
+  { path: 'user', component: UserComponent,
+    children: [
+      { path: 'user-list', component: UserListComponent },
+      { path: 'blog', component: BlogComponent },
+      { path: 'settings', component: SettingsComponent },
+      { path: 'photos', component: PhotosComponent }
+    ]}
 ];
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class AppRoutingModule { }

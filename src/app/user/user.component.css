@@ -3,7 +3,23 @@
 }
 
 nav {
-  background-color:  #E61E1E;;
+  background-color:  #E61E1E;
+  flex-direction: row;
+}
+
+.navbar span {
+  margin-right: 50px;
+  /*font-weight: bold;*/
+  font-size: 120%;
+  color: whitesmoke;
+}
+
+ul li a {
+  color: #ffdada;
+}
+
+ul li a:hover {
+  color: white;
 }
 
 .portrait {
@@ -15,4 +31,6 @@ nav {
   padding: 20px;
   border: 2px solid whitesmoke;
   border-radius: 45%;
+  width: 0;
+  float: left;
 }
