@@ -22,6 +22,21 @@ export class UserComponent implements OnInit {
     );
   }
 
+  public isCustomer(): Boolean {
+    if (this.zalogowanyUzytkownik.uprawnienia === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public isAdmin(): Boolean {
+    if (this.zalogowanyUzytkownik.uprawnienia === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   public wyloguj() {
     localStorage.removeItem('zalogowany');
