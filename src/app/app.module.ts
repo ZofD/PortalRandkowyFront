@@ -12,6 +12,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { PhotosComponent } from './photos/photos.component';
 import { UserListComponent } from './user-list/user-list.component';
 import {HttpClientModule} from '@angular/common/http';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {HttpClientModule} from '@angular/common/http';
     BlogComponent,
     SettingsComponent,
     PhotosComponent,
-    UserListComponent
+    UserListComponent,
+    RegistrationComponent
   ],
   imports: [
     HttpClientModule,
