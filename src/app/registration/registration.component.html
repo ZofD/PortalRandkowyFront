@@ -20,6 +20,7 @@
         <label>Opis:</label>
         <input [(ngModel)]="newUzytkownik.opis" class="form-control"/><br>
         <button (click)="addUser()" class="btn btn-success">Stwórz konto</button>
+        <div *ngIf="errorRejestracja"><br><br>Podałeś błędne dane!</div>
       </div>
     </div>
   </div>

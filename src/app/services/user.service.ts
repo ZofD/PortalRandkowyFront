@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Login} from '../log-in/log-in.component';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,5 +35,8 @@ export class UserService {
 
   public existUser(data: Login) {
     return this.http.get(this.host + 'api/uzytkownik/nick/' + data.haslo + '/password/' + data.mail);
+  }
+  public getSuggestions(id) {
+    return this.http.get(this.host + 'api/uzytkownik/uzytkownik/' + id);
   }
 }
