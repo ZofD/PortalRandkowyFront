@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { User } from './user';
-import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -10,18 +10,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
-  constructor(
-    private userService: UserService,
-    private route: ActivatedRoute
-  ) { }
+  public zalogowany;
+  public zalogowanyUzytkownik;
 
-  @Input() user: User;
+  constructor(private router: Router, private userService: UserService, private cdRef: ChangeDetectorRef) {
+    this.zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
+    this.userService.isLoggedIn.subscribe(res => {
+        this.zalogowany = res;
+        this.zalogowanyUzytkownik =  JSON.parse(localStorage.getItem('data'));
+      }
+    );
+  }
+
+
+  public wyloguj() {
+    localStorage.removeItem('zalogowany');
+    localStorage.removeItem('data');
+    this.userService.isLoggedIn.next(false);
+  }
 
   ngOnInit(): void {
-    // tylko do testow
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(1)
-      .subscribe(user => this.user = user);
   }
 
 }
