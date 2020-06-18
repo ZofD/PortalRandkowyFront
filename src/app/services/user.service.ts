@@ -7,6 +7,7 @@ import {Login} from '../log-in/log-in.component';
   providedIn: 'root'
 })
 export class UserService {
+  public newUser = {mail: '', plec: ''};
   public zalogowanyUzytkownik: boolean = JSON.parse(localStorage.getItem('zalogowany'));
   public isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(this.zalogowanyUzytkownik !== null ? this.zalogowanyUzytkownik : false);
 
