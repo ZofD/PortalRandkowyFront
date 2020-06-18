@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     // tylko do testow
     const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(1)
+    this.userService.getUserById(1)
       .subscribe(user => this.user = user);
   }
 

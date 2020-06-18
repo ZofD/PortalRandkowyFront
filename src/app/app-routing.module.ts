@@ -6,10 +6,12 @@ import { LogInComponent } from './log-in/log-in.component';
 import { SettingsComponent } from './settings/settings.component';
 import { PhotosComponent } from './photos/photos.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/log-in', pathMatch: 'full' },
   { path: 'log-in', component: LogInComponent},
+  { path: 'registration', component: RegistrationComponent},
   { path: 'user/:id', component: UserComponent,
     children: [
       { path: 'user-list', component: UserListComponent },

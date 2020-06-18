@@ -24,7 +24,7 @@ export class BlogComponent implements OnInit {
 
   getUser(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(id)
+    this.userService.getUserById(id)
       .subscribe(user => this.user = user);
   }
 

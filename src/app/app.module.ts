@@ -11,6 +11,7 @@ import { BlogComponent } from './blog/blog.component';
 import { SettingsComponent } from './settings/settings.component';
 import { PhotosComponent } from './photos/photos.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserListComponent } from './user-list/user-list.component';
     BlogComponent,
     SettingsComponent,
     PhotosComponent,
-    UserListComponent
+    UserListComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
