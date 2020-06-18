@@ -9,8 +9,8 @@ import {UserService} from '../services/user.service';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
-
   public uzytkownikCzyIstnieje: FormGroup;
+  public newUser: FormGroup;
   public uzytkownicy: object[] = [];
   public errorRejestracja = false;
   public error = false;
@@ -46,36 +46,10 @@ export class LogInComponent implements OnInit {
     });
   }
 
-  public addUser() {
-    if (this.newUzytkownik.haslo !== '' && this.newUzytkownik.mail !== '' &&
-      this.newUzytkownik.opis !== '' && this.newUzytkownik.plec !== null) {
-      this.userService.addUser(this.newUzytkownik).subscribe((success) => {
-        if (success) {
-          this.zalogowany = true;
-          localStorage.setItem('zalogowany', JSON.stringify(true));
-          localStorage.setItem('data', JSON.stringify(success));
-          this.userService.isLoggedIn.next(true);
-          if (success.uprawnienia === 1) {
-            this.router.navigateByUrl('/admin');
-          } else {
-            this.router.navigateByUrl('user/' + success.id);
-          }
-        } else {
-          console.log('błąd');
-          this.errorRejestracja = true;
-          console.log(this.errorRejestracja);
-          this.userService.isLoggedIn.next(false);
-          this.zalogowany = false;
-          console.error('error');
-        }
-      }, (error) => {
-        this.errorRejestracja = true;
-        console.log('Error');
-      });
-    } else {
-      this.errorRejestracja = true;
-      console.log('Error');
-    }
+  public addUser(newUser: New) {
+   // localStorage.setItem('newUser', JSON.stringify(newUser));
+    console.log(newUser.mail);
+    console.log(newUser.plec);
   }
 
 
@@ -134,4 +108,9 @@ export class LogInComponent implements OnInit {
 export interface Login {
   mail: string;
   haslo: string;
+}
+
+export interface New {
+  mail: string;
+  plec: boolean;
 }
