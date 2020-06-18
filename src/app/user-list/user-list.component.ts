@@ -19,7 +19,6 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-   // this.curentUserId = this.userComponent.user.id;
   }
 
   getUsers(): void {
