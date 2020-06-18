@@ -11,21 +11,21 @@
       </div>
     </form>
     <div class="logo jumbotron offset-xl-0 col-xl-2"></div>
-    <form class="col-xl-3" id="logInNav">
+    <form class="col-xl-3" id="logInNav" [formGroup]="newUser" (ngSubmit)="addUser(newUser.value)">
       <div class="col-12">
         <div class="radio row align-items-center cocol-12">
           <div class="custom-control custom-radio col">
-            <input type="radio" class="custom-control-input" id="kobieta" name="sex" value="Kobieta" required>
-            <label class="custom-control-label" for="kobieta">Kobieta</label>
+            <input type="radio" class="custom-control-input"  value="true" formControlName="plec" >
+            <label class="custom-control-label" >Kobieta</label>
           </div>
           <div class="custom-control custom-radio col">
-            <input type="radio" class="custom-control-input" id="mezczyzna" name="sex" value="Mężczyzna" required>
-            <label class="custom-control-label" for="mezczyzna">Mężczyzna</label>
+            <input type="radio" class="custom-control-input" value="false" formControlName="plec"  >
+            <label class="custom-control-label" >Mężczyzna</label>
           </div>
         </div>
-        <input type="email" required>
+        <input type="email" required formControlName="mail" >
         <small class="form-text text-muted">E-mail</small>
-        <input routerLink="/registration" class="btn btn-danger" type="submit" value="Zarejestruj">
+        <input  class="btn btn-danger" type="submit" value="Zarejestruj">
       </div>
     </form>
   </nav>
