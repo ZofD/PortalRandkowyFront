@@ -10,16 +10,16 @@
     <div class="col-6">
       <div class="form-group">
         <label>Nick:</label>
-        <input [(ngModel)]="zalogowanyUzytkownik.nick" class="form-control"/>
+        <input [(ngModel)]="newUzytkownik.nick" class="form-control"/>
         <label>E-mail:</label>
-        <input [(ngModel)]="newUser.mail" class="form-control"/>
+        <input [(ngModel)]="newUzytkownik.mail" class="form-control"/>
         <label>Hasło:</label>
-        <input type="password" [(ngModel)]="zalogowanyUzytkownik.haslo" class="form-control"/>
+        <input type="password" [(ngModel)]="newUzytkownik.haslo" class="form-control"/>
         <label>Płeć:</label>
-        <input [(ngModel)]="newUser.plec" class="form-control"/>
+        <input [(ngModel)]="newUzytkownik.plec" class="form-control"/>
         <label>Opis:</label>
-        <input [(ngModel)]="zalogowanyUzytkownik.opis" class="form-control"/><br>
-        <button (click)="updateUzytkownik()" class="btn btn-success">Aktualizuj</button>
+        <input [(ngModel)]="newUzytkownik.opis" class="form-control"/><br>
+        <button (click)="addUser()" class="btn btn-success">Stwórz konto</button>
       </div>
     </div>
   </div>

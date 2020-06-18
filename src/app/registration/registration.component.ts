@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {UserService} from '../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -8,24 +9,50 @@ import {UserService} from '../services/user.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  newUser = JSON.parse(localStorage.getItem('newUser'));
-  public zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
+  public newUser: FormGroup;
+  public errorRejestracja = false;
+  public error = false;
   public zalogowany = JSON.parse(localStorage.getItem('zalogowany'));
+  public newUzytkownik = {plec: true, nick: '', mail: '', haslo: '', opis: '', uprawnienia: 0, lokalizacjaX: 1, lokalizacjaY: 1};
+
 
   constructor(private formBuilder: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
-  public updateUzytkownik() {
-    this.userService.updateUser(this.zalogowanyUzytkownik).subscribe((success) => {
-      console.log('Sukces');
-      localStorage.setItem('data', JSON.stringify(this.zalogowanyUzytkownik));
-
-    }, (error) => {
+  public addUser() {
+    if (this.newUzytkownik.haslo !== '' && this.newUzytkownik.mail !== '' &&
+      this.newUzytkownik.mail !== '' && this.newUzytkownik.plec !== null) {
+      this.userService.addUser(this.newUzytkownik).subscribe((success) => {
+        if (success) {
+          this.zalogowany = true;
+          localStorage.setItem('zalogowany', JSON.stringify(true));
+          localStorage.setItem('data', JSON.stringify(success));
+          this.userService.isLoggedIn.next(true);
+          if (success.uprawnienia === 1) {
+            this.router.navigateByUrl('/admin');
+          } else {
+            this.router.navigateByUrl('user/' + success.id);
+          }
+        } else {
+          console.log('błąd');
+          this.errorRejestracja = true;
+          console.log(this.errorRejestracja);
+          this.userService.isLoggedIn.next(false);
+          this.zalogowany = false;
+          console.error('error');
+        }
+      }, (error) => {
+        this.errorRejestracja = true;
+        console.log('Error');
+      });
+    } else {
+      this.errorRejestracja = true;
       console.log('Error');
-    });
+    }
   }
 }
