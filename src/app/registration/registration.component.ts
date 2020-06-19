@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {New} from '../log-in/log-in.component';
@@ -11,9 +11,15 @@ import {PodkategorieService} from '../services/podkategorie.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  podkategoriaForm: FormGroup;
-  podkategoriaForm2: FormGroup;
-  podkategoriaForm3: FormGroup;
+  podkategoriaForm = new FormGroup({
+    podkategoriaControl: new FormControl()
+  });
+  podkategoriaForm2 = new FormGroup({
+    podkategoriaControl2: new FormControl()
+  });
+  podkategoriaForm3 = new FormGroup({
+    podkategoriaControl3: new FormControl()
+  });
   public podkategorie = [];
   public podkategorie2 = [];
   public podkategorie3 = [];
@@ -47,15 +53,16 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-  this.podkategorie = [];
+    this.podkategorie = [];
     this.podkategorie2 = [];
     this.podkategorie3 = [];
   }
+
   public getPodkategorie() {
     this.podkategorieService.getAllPodkategorie().subscribe((result: any[]) => {
       this.podkategorie = result.map(e => e.nazwa);
-      this.podkategorie2 =  result.map(e => e.nazwa);
-      this.podkategorie3 =  result.map(e => e.nazwa);
+      this.podkategorie2 = result.map(e => e.nazwa);
+      this.podkategorie3 = result.map(e => e.nazwa);
 
     }, (error) => {
       console.log('Error');
