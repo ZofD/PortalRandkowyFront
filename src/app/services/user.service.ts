@@ -42,6 +42,10 @@ export class UserService {
     return this.http.get(this.host + 'api/uzytkownik/uzytkownik/' + id);
   }
 
+  public getUser(id) {
+    return this.http.get(this.host + 'api/uzytkownik/' + id);
+  }
+
   public setNewUser(newUser: New) {
     this.newUser =  newUser;
   }
