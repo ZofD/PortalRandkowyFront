@@ -51,7 +51,7 @@ export class LogInComponent implements OnInit {
   }
 
   public addUser(newUser: New): void {
-    if (newUser.plec === ('Kobieta' || 'Mężczyzna') || newUser.mail.length) {
+    if (newUser.plec === ('Kobieta' || 'Mężczyzna') || newUser.mail.length > 0) {
       this.userService.setNewUser(newUser);
       this.router.navigateByUrl('/registration');
     } else {
