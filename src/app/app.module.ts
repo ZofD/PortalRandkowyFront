@@ -14,6 +14,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReportListComponent } from './report-list/report-list.component';
+import { AddPhotoComponent } from './add-photo/add-photo.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ReportListComponent } from './report-list/report-list.component';
     PhotosComponent,
     UserListComponent,
     RegistrationComponent,
-    ReportListComponent
+    ReportListComponent,
+    AddPhotoComponent
   ],
   imports: [
     HttpClientModule,
