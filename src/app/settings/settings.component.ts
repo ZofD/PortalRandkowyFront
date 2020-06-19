@@ -61,4 +61,12 @@ export class SettingsComponent implements OnInit {
       console.log('Error');
     });
   }
+
+  public isMezczyzna(): Boolean {
+    return this.zalogowanyUzytkownik.plec;
+  }
+
+  public isKobieta(): Boolean {
+    return !this.zalogowanyUzytkownik.plec;
+  }
 }
