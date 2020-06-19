@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user/user'
+
 
 @Component({
   selector: 'app-report-list',
@@ -7,8 +7,6 @@ import { User } from '../user/user'
   styleUrls: ['./report-list.component.css']
 })
 export class ReportListComponent implements OnInit {
-  reports: Report[];
-  report: Report;
 
   constructor() { }
 
@@ -17,8 +15,4 @@ export class ReportListComponent implements OnInit {
 
 }
 
-export interface Report {
-  user1: User;
-  user2: User;
-  message: string;
-}
+

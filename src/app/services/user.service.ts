@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Login, New} from '../log-in/log-in.component';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,5 +43,9 @@ export class UserService {
 
   public setNewUser(newUser: New): void {
     this.newUser = newUser;
+  }
+
+  public getSuggestions(id) {
+    return this.http.get(this.host + 'api/uzytkownik/uzytkownik/' + id);
   }
 }

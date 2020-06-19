@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import { User } from '../user/user';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {User} from '../user/user';
+import {FormBuilder} from '@angular/forms';
+import {UserService} from '../services/user.service';
 
 
 @Component({
@@ -8,18 +10,23 @@ import { User } from '../user/user';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users: User[];
-  curentUserId: number;
+  public uzytkownicy: any[] = [];
+  public uzytkownik: any[] = [];
+  public zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
 
-  constructor(
-
-    ) { }
-
-  ngOnInit(): void {
-    this.getUsers();
+  constructor(private formBuilder: FormBuilder,
+              private userService: UserService, private ref: ChangeDetectorRef) {
   }
 
-  getUsers(): void {
+  public ngOnInit() {
+    this.getAllUzytkownicy();
+  }
 
+  public getAllUzytkownicy() {
+    this.userService.getSuggestions(this.zalogowanyUzytkownik.id).subscribe((result: any[]) => {
+      this.uzytkownicy = result;
+      console.log(result);
+    }, (error) => {
+    });
   }
 }
