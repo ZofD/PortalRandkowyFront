@@ -11,7 +11,26 @@
         <label>Płeć:</label>
         <input [(ngModel)]="zalogowanyUzytkownik.plec" class="form-control"/>
         <label>Opis:</label>
-        <input [(ngModel)]="zalogowanyUzytkownik.opis" class="form-control"/><br>
+        <input [(ngModel)]="zalogowanyUzytkownik.opis" class="form-control"/>
+        <label>Wybierz pierwsze zainteresowanie:</label>
+        <form [formGroup]="podkategoriaForm">
+          <select formControlName="podkategoriaControl">
+            <option [value]="podkategoria" *ngFor="let podkategoria of podkategorie">{{podkategoria}}</option>
+          </select>
+        </form>
+        <label>Wybierz drugie zainteresowanie:</label>
+        <form [formGroup]="podkategoriaForm2">
+          <select formControlName="podkategoriaControl2">
+            <option [value]="podkategoria2" *ngFor="let podkategoria2 of podkategorie2">{{podkategoria2}}</option>
+          </select>
+        </form>
+        <label>Wybierz trzecie zainteresowanie:</label>
+        <form [formGroup]="podkategoriaForm3">
+          <select formControlName="podkategoriaControl3">
+            <option [value]="podkategoria3" *ngFor="let podkategoria3 of podkategorie3">{{podkategoria3}}</option>
+          </select>
+        </form>
+        <br>
         <button (click)="updateUzytkownik()" class="btn btn-success">Aktualizuj</button>
       </div>
     </div>
