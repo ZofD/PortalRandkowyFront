@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <nav class="row">
     <form class="offset-xl-2 col-xl-3" [formGroup]="uzytkownikCzyIstnieje" (ngSubmit)="zaloguj(uzytkownikCzyIstnieje.value)">
-      <div class="col-12">
+      <div class="col-12 form-group">
         <input type="text" formControlName="mail">
         <small class="form-text text-muted">E-mail</small>
         <input type="password" formControlName="haslo">
@@ -12,20 +12,21 @@
     </form>
     <div class="logo jumbotron offset-xl-0 col-xl-2"></div>
     <form class="col-xl-3" id="logInNav" [formGroup]="newUser" (ngSubmit)="addUser(newUser.value)">
-      <div class="col-12">
+      <div class="col-12 form-group">
         <div class="radio row align-items-center cocol-12">
           <div class="custom-control custom-radio col">
-            <input type="radio" class="custom-control-input"  value="true" formControlName="plec" >
-            <label class="custom-control-label" >Kobieta</label>
+            <input type="radio" class="custom-control-input" id="Kobieta"  value="Kobieta" formControlName="plec" required>
+            <label class="custom-control-label" for="Kobieta" >Kobieta</label>
           </div>
           <div class="custom-control custom-radio col">
-            <input type="radio" class="custom-control-input" value="false" formControlName="plec"  >
-            <label class="custom-control-label" >Mężczyzna</label>
+            <input type="radio" class="custom-control-input" id="Mezczyzna" value="Mężczyzna" formControlName="plec" required>
+            <label class="custom-control-label" for="Mezczyzna">Mężczyzna</label>
           </div>
         </div>
-        <input type="email" required formControlName="mail" >
+        <input type="email" formControlName="mail" formControlName="mail" required>
         <small class="form-text text-muted">E-mail</small>
         <input  class="btn btn-danger" type="submit" value="Zarejestruj">
+        <div *ngIf="errorRejestracja"><br><br>Powyższe pola są obowiązkowe!</div>
       </div>
     </form>
   </nav>

@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {Login} from '../log-in/log-in.component';
+import {Login, New} from '../log-in/log-in.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  public newUser = {mail: '', plec: ''};
+  newUser: New;
   public zalogowanyUzytkownik: boolean = JSON.parse(localStorage.getItem('zalogowany'));
   public isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(this.zalogowanyUzytkownik !== null ? this.zalogowanyUzytkownik : false);
 
@@ -34,5 +34,13 @@ export class UserService {
 
   public existUser(data: Login) {
     return this.http.get(this.host + 'api/uzytkownik/nick/' + data.haslo + '/password/' + data.mail);
+  }
+
+  public getNewUser(): New {
+    return this.newUser;
+  }
+
+  public setNewUser(newUser: New): void {
+    this.newUser = newUser;
   }
 }

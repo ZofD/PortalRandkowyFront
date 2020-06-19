@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import { New } from '../log-in/log-in.component';
 
 @Component({
   selector: 'app-registration',
@@ -9,7 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  public newUser: FormGroup;
+  public newUser: New;
   public errorRejestracja = false;
   public error = false;
   public zalogowany = JSON.parse(localStorage.getItem('zalogowany'));
@@ -22,6 +23,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.newUser = this.userService.getNewUser();
   }
 
   public addUser() {
@@ -33,11 +35,7 @@ export class RegistrationComponent implements OnInit {
           localStorage.setItem('zalogowany', JSON.stringify(true));
           localStorage.setItem('data', JSON.stringify(success));
           this.userService.isLoggedIn.next(true);
-          if (success.uprawnienia === 1) {
-            this.router.navigateByUrl('/admin');
-          } else {
-            this.router.navigateByUrl('user/' + success.id);
-          }
+          this.router.navigateByUrl('user/' + success.id);
         } else {
           console.log('błąd');
           this.errorRejestracja = true;

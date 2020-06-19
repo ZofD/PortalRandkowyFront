@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../services/user.service';
 
@@ -10,7 +10,11 @@ import {UserService} from '../services/user.service';
 })
 export class LogInComponent implements OnInit {
   public uzytkownikCzyIstnieje: FormGroup;
-  public newUser: FormGroup;
+  newUser = new FormGroup({
+    mail: new FormControl(),
+    plec: new FormControl()
+  });
+  // public newUser: FormGroup;
   public uzytkownicy: object[] = [];
   public errorRejestracja = false;
   public error = false;
@@ -46,38 +50,45 @@ export class LogInComponent implements OnInit {
     });
   }
 
-  public addUser(newUser: New) {
-   // localStorage.setItem('newUser', JSON.stringify(newUser));
-    console.log(newUser.mail);
-    console.log(newUser.plec);
+  public addUser(newUser: New): void {
+    if (newUser.plec !== ('Kobieta' || 'Mężczyzna') || newUser.mail.length === 0) {
+      this.errorRejestracja = true;
+    } else {
+      this.userService.setNewUser(newUser);
+      this.router.navigateByUrl('/registration');
+    }
   }
 
 
   public zaloguj(data: Login): void {
-    this.error = false;
-    this.userService.existUser(data).subscribe((success: any) => {
-      if (success) {
-        this.zalogowany = true;
-        localStorage.setItem('zalogowany', JSON.stringify(true));
-        localStorage.setItem('data', JSON.stringify(success));
-        this.userService.isLoggedIn.next(true);
-        if (success.uprawnienia === 1) {
-          this.router.navigateByUrl('/admin');
-        } else {
-          this.router.navigateByUrl('user/' + success.id);
-        }
-      } else {
-        console.log('błąd');
-        this.error = true;
-        console.log(this.error);
-        this.userService.isLoggedIn.next(false);
-        this.zalogowany = false;
-        console.error('error');
-      }
-    }, (error) => {
+    if (data.haslo.length === 0 || data.mail.length === 0){
       this.error = true;
-      console.log('Error');
-    });
+    } else {
+      this.error = false;
+      this.userService.existUser(data).subscribe((success: any) => {
+        if (success) {
+          this.zalogowany = true;
+          localStorage.setItem('zalogowany', JSON.stringify(true));
+          localStorage.setItem('data', JSON.stringify(success));
+          this.userService.isLoggedIn.next(true);
+          if (success.uprawnienia === 1) {
+            this.router.navigateByUrl('/admin');
+          } else {
+            this.router.navigateByUrl('user/' + success.id);
+          }
+        } else {
+          console.log('błąd');
+          this.error = true;
+          console.log(this.error);
+          this.userService.isLoggedIn.next(false);
+          this.zalogowany = false;
+          console.error('error');
+        }
+      }, (error) => {
+        this.error = true;
+        console.log('Error');
+      });
+    }
   }
 
   makeEnabled(id) {
@@ -112,5 +123,5 @@ export interface Login {
 
 export interface New {
   mail: string;
-  plec: boolean;
+  plec: string;
 }

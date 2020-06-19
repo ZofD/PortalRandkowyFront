@@ -12,11 +12,11 @@
         <label>Nick:</label>
         <input [(ngModel)]="newUzytkownik.nick" class="form-control"/>
         <label>E-mail:</label>
-        <input [(ngModel)]="newUzytkownik.mail" class="form-control"/>
+        <input [(ngModel)]="newUser.mail" class="form-control" disabled>
         <label>Hasło:</label>
         <input type="password" [(ngModel)]="newUzytkownik.haslo" class="form-control"/>
         <label>Płeć:</label>
-        <input [(ngModel)]="newUzytkownik.plec" class="form-control"/>
+        <input [(ngModel)]="newUser.plec" class="form-control" disabled>
         <label>Opis:</label>
         <input [(ngModel)]="newUzytkownik.opis" class="form-control"/><br>
         <button (click)="addUser()" class="btn btn-success">Stwórz konto</button>
