@@ -22,6 +22,7 @@
         <label>Wybierz pierwsze zainteresowanie:</label>
         <form [formGroup]="podkategoriaForm">
           <select formControlName="podkategoriaControl">
+
             <option [value]="podkategoria" *ngFor="let podkategoria of podkategorie">{{podkategoria}}</option>
           </select>
         </form>

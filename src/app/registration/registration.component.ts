@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
@@ -46,6 +46,11 @@ export class RegistrationComponent implements OnInit {
     this.newUser = this.userService.getNewUser();
   }
 
+  ngOnDestroy(): void {
+  this.podkategorie = [];
+    this.podkategorie2 = [];
+    this.podkategorie3 = [];
+  }
   public getPodkategorie() {
     this.podkategorieService.getAllPodkategorie().subscribe((result: any[]) => {
       this.podkategorie = result.map(e => e.nazwa);
