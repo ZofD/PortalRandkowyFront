@@ -8,6 +8,7 @@ import {Login, New} from '../log-in/log-in.component';
   providedIn: 'root'
 })
 export class UserService {
+  newUser: New;
   public zalogowanyUzytkownik: boolean = JSON.parse(localStorage.getItem('zalogowany'));
   public isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(this.zalogowanyUzytkownik !== null ? this.zalogowanyUzytkownik : false);
 
@@ -39,5 +40,13 @@ export class UserService {
 
   public getSuggestions(id) {
     return this.http.get(this.host + 'api/uzytkownik/uzytkownik/' + id);
+  }
+
+  public setNewUser(newUser: New) {
+    this.newUser =  newUser;
+  }
+
+  public getNewUser(): New {
+    return this.newUser;
   }
 }
