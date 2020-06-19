@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {PodkategorieService} from '../services/podkategorie.service';
 
 @Component({
@@ -10,9 +10,15 @@ import {PodkategorieService} from '../services/podkategorie.service';
 })
 export class SettingsComponent implements OnInit {
 
-  podkategoriaForm: FormGroup;
-  podkategoriaForm2: FormGroup;
-  podkategoriaForm3: FormGroup;
+  podkategoriaForm = new FormGroup({
+    podkategoriaControl: new FormControl()
+  });
+  podkategoriaForm2 = new FormGroup({
+    podkategoriaControl2: new FormControl()
+  });
+  podkategoriaForm3 = new FormGroup({
+    podkategoriaControl3: new FormControl()
+  });
   public podkategorie = [];
   public podkategorie2 = [];
   public podkategorie3 = [];
