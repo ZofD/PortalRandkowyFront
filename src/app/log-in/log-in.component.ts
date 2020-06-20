@@ -18,6 +18,7 @@ export class LogInComponent implements OnInit {
   public uzytkownicy: object[] = [];
   public errorRejestracja = false;
   public error = false;
+  public blokada = false;
   public zalogowany = JSON.parse(localStorage.getItem('zalogowany'));
   public disabled: boolean[] = [];
   public newUzytkownik = {plec: true, nick: '', mail: '', haslo: '', opis: '', uprawnienia: 0, lokalizacjaX: 1, lokalizacjaY: 1};
@@ -63,8 +64,10 @@ export class LogInComponent implements OnInit {
   public zaloguj(data: Login): void {
     if (data.haslo.length === 0 || data.mail.length === 0){
       this.error = true;
+      this.blokada = false;
     } else {
       this.error = false;
+      this.blokada = false;
       this.userService.existUser(data).subscribe((success: any) => {
         if (success) {
           this.zalogowany = true;
@@ -73,7 +76,12 @@ export class LogInComponent implements OnInit {
           this.userService.isLoggedIn.next(true);
           if (success.uprawnienia === 1) {
             this.router.navigateByUrl('user/');
-          } else {
+          }
+          else if (success.uprawnienia === 2) {
+            this.zalogowany = false;
+            this.blokada = true;
+          }
+        else {
             this.router.navigateByUrl('user/' + success.id);
           }
         } else {
