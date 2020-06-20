@@ -3,18 +3,20 @@
     <div class="col-6">
       <div class="form-group">
         <label>Nick:</label>
-        <input [(ngModel)]="zalogowanyUzytkownik.nick" class="form-control"/>
+        <input [(ngModel)]="zalogowanyUzytkownik.nick" class="form-control"/><br>
         <label>E-mail:</label>
-        <input [(ngModel)]="zalogowanyUzytkownik.mail" class="form-control"/>
+        <input [(ngModel)]="zalogowanyUzytkownik.mail" class="form-control"/><br>
         <label>Hasło:</label>
-        <input type="password" [(ngModel)]="zalogowanyUzytkownik.haslo" class="form-control"/>
+        <input type="password" [(ngModel)]="zalogowanyUzytkownik.haslo" class="form-control"/><br>
         <label>Płeć:</label>
         <input *ngIf="isMezczyzna()"
                type="text" class="form-control" value="Mężczyzna" disabled/>
         <input *ngIf="isKobieta()"
-               type="text" class="form-control" value="Kobieta" disabled/>
+               type="text" class="form-control" value="Kobieta" disabled/><br>
         <label>Opis:</label>
         <input [(ngModel)]="zalogowanyUzytkownik.opis" class="form-control"/><br>
+        <label>Miejscowość:</label>
+        <input [(ngModel)]="zalogowanyUzytkownik.misato" class="form-control"/><br>
         <label>Wybierz pierwsze zainteresowanie:</label><br>
         <form [formGroup]="podkategoriaForm">
           <select formControlName="podkategoriaControl">

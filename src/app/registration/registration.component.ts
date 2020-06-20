@@ -33,6 +33,7 @@ export class RegistrationComponent implements OnInit {
     mail: '',
     haslo: '',
     opis: '',
+    misato: '',
     uprawnienia: 0,
     lokalizacjaX: 1,
     lokalizacjaY: 1,
@@ -78,7 +79,12 @@ export class RegistrationComponent implements OnInit {
       {id: this.podkategoriaForm2.value.podkategoriaControl2},
       {id: this.podkategoriaForm3.value.podkategoriaControl3}];
     console.log(this.newUzytkownik);
-    if (this.newUzytkownik.haslo !== '' && this.newUzytkownik.plec !== '' && this.newUzytkownik.mail !== '' && this.newUzytkownik.nick !== '' && this.newUzytkownik.opis !== '') {
+    if (this.newUzytkownik.haslo !== '' &&
+        this.newUzytkownik.plec !== '' &&
+        this.newUzytkownik.mail !== '' &&
+        this.newUzytkownik.nick !== '' &&
+        this.newUzytkownik.misato !== '' &&
+        this.newUzytkownik.opis !== '') {
       this.userService.addUser(this.newUzytkownik).subscribe((success) => {
         if (success) {
           this.zalogowany = true;
@@ -87,11 +93,11 @@ export class RegistrationComponent implements OnInit {
           localStorage.setItem('zalogowany', JSON.stringify(true));
           this.userService.getUser(success.id).subscribe((success2) => {
             localStorage.setItem('data', JSON.stringify(success2));
+            this.router.navigateByUrl('user/' + success.id);
           }, (error) => {
             this.errorRejestracja = true;
             console.log('Error');
           });
-          this.router.navigateByUrl('user/' + success.id);
         } else {
           console.log('błąd');
           this.errorRejestracja = true;

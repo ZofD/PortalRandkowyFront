@@ -11,15 +11,6 @@ import {PodkategorieService} from '../services/podkategorie.service';
 export class SettingsComponent implements OnInit {
   podkategoriaForm: FormGroup;
 
-  // podkategoriaForm = new FormGroup({
-  //   podkategoriaControl: new FormControl()
-  // });
-  // podkategoriaForm2 = new FormGroup({
-  //   podkategoriaControl2: new FormControl()
-  // });
-  // podkategoriaForm3 = new FormGroup({
-  //   podkategoriaControl3: new FormControl()
-  // });
   public podkategorie = [];
   public zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
   public zalogowany = JSON.parse(localStorage.getItem('zalogowany'));
@@ -35,15 +26,6 @@ export class SettingsComponent implements OnInit {
 
     this.getPodkategorie();
 
-    // this.podkategoriaForm = this.formBuilder.group({
-    //   podkategoriaControl: [this.zalogowanyUzytkownik.podKategorieList[0].nazwa]
-    // });
-    // this.podkategoriaForm2 = this.formBuilder.group({
-    //   podkategoriaControl2: [this.zalogowanyUzytkownik.podKategorieList[1].nazwa]
-    // });
-    // this.podkategoriaForm3 = this.formBuilder.group({
-    //   podkategoriaControl3: [this.zalogowanyUzytkownik.podKategorieList[2].nazwa]
-    // });
     this.podkategoriaForm = this.formBuilder.group({
       podkategoriaControl: this.zalogowanyUzytkownik.podKategorieList[0].id,
       podkategoriaControl2: this.zalogowanyUzytkownik.podKategorieList[1].id,

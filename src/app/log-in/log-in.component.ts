@@ -72,7 +72,7 @@ export class LogInComponent implements OnInit {
           localStorage.setItem('data', JSON.stringify(success));
           this.userService.isLoggedIn.next(true);
           if (success.uprawnienia === 1) {
-            this.router.navigateByUrl('/admin');
+            this.router.navigateByUrl('user/');
           } else {
             this.router.navigateByUrl('user/' + success.id);
           }
