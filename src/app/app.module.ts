@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReportListComponent } from './report-list/report-list.component';
 import { AddPhotoComponent } from './add-photo/add-photo.component';
+import { MyPipe } from './user-list/user-list.pipe';
 import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AdminComponent } from './admin/admin.component';
     RegistrationComponent,
     ReportListComponent,
     AddPhotoComponent,
+    MyPipe,
     AdminComponent
   ],
   imports: [
@@ -39,7 +41,7 @@ import { AdminComponent } from './admin/admin.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [MyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
