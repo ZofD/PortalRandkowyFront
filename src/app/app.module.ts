@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReportListComponent } from './report-list/report-list.component';
 import { AddPhotoComponent } from './add-photo/add-photo.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddPhotoComponent } from './add-photo/add-photo.component';
     UserListComponent,
     RegistrationComponent,
     ReportListComponent,
-    AddPhotoComponent
+    AddPhotoComponent,
+    AdminComponent
   ],
   imports: [
     HttpClientModule,

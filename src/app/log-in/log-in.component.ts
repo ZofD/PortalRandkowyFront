@@ -75,7 +75,7 @@ export class LogInComponent implements OnInit {
           localStorage.setItem('data', JSON.stringify(success));
           this.userService.isLoggedIn.next(true);
           if (success.uprawnienia === 1) {
-            this.router.navigateByUrl('user/');
+            this.router.navigateByUrl('user/' + success.id);
           }
           else if (success.uprawnienia === 2) {
             this.zalogowany = false;
