@@ -22,19 +22,20 @@
         <label>Wybierz pierwsze zainteresowanie:</label>
         <form [formGroup]="podkategoriaForm">
           <select formControlName="podkategoriaControl">
-            <option [value]="podkategoria" *ngFor="let podkategoria of podkategorie">{{podkategoria}}</option>
+
+            <option [value]="podkategoria.id"  *ngFor="let podkategoria of podkategorie">{{podkategoria.nazwa}}</option>
           </select>
         </form>
         <label>Wybierz drugie zainteresowanie:</label>
         <form [formGroup]="podkategoriaForm2">
           <select formControlName="podkategoriaControl2">
-            <option [value]="podkategoria2" *ngFor="let podkategoria2 of podkategorie2">{{podkategoria2}}</option>
+            <option [value]="podkategoria2.id" *ngFor="let podkategoria2 of podkategorie2">{{podkategoria2.nazwa}}</option>
           </select>
         </form>
         <label>Wybierz trzecie zainteresowanie:</label>
         <form [formGroup]="podkategoriaForm3">
           <select formControlName="podkategoriaControl3">
-            <option [value]="podkategoria3" *ngFor="let podkategoria3 of podkategorie3">{{podkategoria3}}</option>
+            <option [value]="podkategoria3.id" *ngFor="let podkategoria3 of podkategorie3">{{podkategoria3.nazwa}}</option>
           </select>
         </form>
         <br>

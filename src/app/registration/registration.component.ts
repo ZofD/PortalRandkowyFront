@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
@@ -36,7 +36,9 @@ export class RegistrationComponent implements OnInit {
     uprawnienia: 0,
     lokalizacjaX: 1,
     lokalizacjaY: 1,
-    podKategorieList: []
+    podKategorieList: [{id: this.podkategoriaForm.value.podkategoriaControl},
+      {id: this.podkategoriaForm2.value.podkategoriaControl2},
+      {id: this.podkategoriaForm3.value.podkategoriaControl3}]
   };
 
 
@@ -52,11 +54,17 @@ export class RegistrationComponent implements OnInit {
     this.newUser = this.userService.getNewUser();
   }
 
+  ngOnDestroy(): void {
+    this.podkategorie = [];
+    this.podkategorie2 = [];
+    this.podkategorie3 = [];
+  }
+
   public getPodkategorie() {
     this.podkategorieService.getAllPodkategorie().subscribe((result: any[]) => {
-      this.podkategorie = result.map(e => e.nazwa);
-      this.podkategorie2 =  result.map(e => e.nazwa);
-      this.podkategorie3 =  result.map(e => e.nazwa);
+      this.podkategorie = result;
+      this.podkategorie2 = result;
+      this.podkategorie3 = result;
 
     }, (error) => {
       console.log('Error');
@@ -66,13 +74,23 @@ export class RegistrationComponent implements OnInit {
   public addUser() {
     this.newUzytkownik.mail = this.newUser.mail;
     this.newUzytkownik.plec = this.newUser.plec;
+    this.newUzytkownik.podKategorieList = [{id: this.podkategoriaForm.value.podkategoriaControl},
+      {id: this.podkategoriaForm2.value.podkategoriaControl2},
+      {id: this.podkategoriaForm3.value.podkategoriaControl3}];
+    console.log(this.newUzytkownik);
     if (this.newUzytkownik.haslo !== '' && this.newUzytkownik.plec !== '' && this.newUzytkownik.mail !== '' && this.newUzytkownik.nick !== '' && this.newUzytkownik.opis !== '') {
       this.userService.addUser(this.newUzytkownik).subscribe((success) => {
         if (success) {
           this.zalogowany = true;
-          localStorage.setItem('zalogowany', JSON.stringify(true));
-          localStorage.setItem('data', JSON.stringify(success));
           this.userService.isLoggedIn.next(true);
+
+          localStorage.setItem('zalogowany', JSON.stringify(true));
+          this.userService.getUser(success.id).subscribe((success2) => {
+            localStorage.setItem('data', JSON.stringify(success2));
+          }, (error) => {
+            this.errorRejestracja = true;
+            console.log('Error');
+          });
           this.router.navigateByUrl('user/' + success.id);
         } else {
           console.log('błąd');
