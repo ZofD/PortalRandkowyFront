@@ -1,12 +1,19 @@
 <div class="container">
     <div class="row">
-      <ul class="list-group offset-xl-2 col-xl-8 offset-md-1 col-md-10">
-        <li class="list-group-item  list-group-item-danger"><h4 class="text-center col-12">Lista zgłoszeń</h4></li>
+      <ul class="list-group offset-xl-1 col-xl-10 offset-md-0 col-md-12">
+        <li class="list-group-item active"><h4 class="text-center col-12">Lista zgłoszeń</h4></li>
+        <li class="list-group-item active">
+          <div class="col-3">Osoba zgłaszająca</div>
+          <div class="col-3">Osoba zgłaszana</div>
+          <div class="col-2">Data Zgłoszenia</div>
+      </li>
         <li *ngFor="let zgloszenie of zgloszenia" class="list-group-item list-group-item-action">
-          <div class="col-4"><h4>{{zgloszenie.uzytkownikZglaszajacy.nick}}</h4></div>
-          <div class="col-4"> zgłasza </div>
-          <div class="col-4"><h4>{{zgloszenie.uzytkownikZglaszany.nick}}</h4></div>
-          <div class="col-12"><h4>{{zgloszenie.tresc}}</h4></div>
+          <div class="col-3 nick">{{zgloszenie.uzytkownikZglaszajacy.nick}}</div>
+          <div class="col-3 nick">{{zgloszenie.uzytkownikZglaszany.nick}}</div>
+          <div class="col-2 data"></div>
+          <div class="col-2"><button class="w-100 btn btn-danger">Przyjmij</button></div>
+          <div class="col-2"><button class="w-100 btn btn-danger">Odrzuć</button></div>
+          <div class="col-12 opis">{{zgloszenie.tresc}}</div>
         </li>
       </ul>
     </div>
