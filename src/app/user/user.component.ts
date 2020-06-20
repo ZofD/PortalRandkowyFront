@@ -11,7 +11,7 @@ import {UserService} from '../services/user.service';
 export class UserComponent implements OnInit {
 
   public zalogowany;
-  public zalogowanyUzytkownik;
+  public zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
 
   constructor(private router: Router, private userService: UserService, private cdRef: ChangeDetectorRef) {
     this.zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
@@ -22,7 +22,15 @@ export class UserComponent implements OnInit {
     );
   }
 
-  public isCustomer(): Boolean {
+  ngOnInit(): void {
+    this.zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
+    this.userService.isLoggedIn.subscribe(res => {
+        this.zalogowany = res;
+        this.zalogowanyUzytkownik =  JSON.parse(localStorage.getItem('data'));
+      }
+    );
+  }
+  public isCustomer(): boolean {
     if (this.zalogowanyUzytkownik.uprawnienia === 0) {
       return true;
     } else {
@@ -30,7 +38,7 @@ export class UserComponent implements OnInit {
     }
   }
 
-  public isAdmin(): Boolean {
+  public isAdmin(): boolean {
     if (this.zalogowanyUzytkownik.uprawnienia === 1) {
       return true;
     } else {
@@ -44,7 +52,6 @@ export class UserComponent implements OnInit {
     this.userService.isLoggedIn.next(false);
   }
 
-  ngOnInit(): void {
-  }
+
 
 }

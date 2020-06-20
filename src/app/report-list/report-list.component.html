@@ -2,11 +2,11 @@
     <div class="row">
       <ul class="list-group offset-xl-2 col-xl-8 offset-md-1 col-md-10">
         <li class="list-group-item active"><h4 class="text-center col-12">Lista zgłoszeń</h4></li>
-        <li class="list-group-item list-group-item-action">
-          <div class="col-4"><h4>u1<span> n1</span></h4></div>
+        <li *ngFor="let zgloszenie of zgloszenia" class="list-group-item list-group-item-action">
+          <div class="col-4"><h4>{{zgloszenie.uzytkownikZglaszajacy.nick}}</h4></div>
           <div class="col-4"> zgłasza </div>
-          <div class="col-4"><h4> u2<span> n2</span></h4></div>
-          <div class="col-12"><h4> wiadomosc</h4></div>
+          <div class="col-4"><h4>{{zgloszenie.uzytkownikZglaszany.nick}}</h4></div>
+          <div class="col-12"><h4>{{zgloszenie.tresc}}</h4></div>
         </li>
       </ul>
     </div>

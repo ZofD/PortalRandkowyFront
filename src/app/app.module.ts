@@ -16,6 +16,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ReportListComponent } from './report-list/report-list.component';
 import { AddPhotoComponent } from './add-photo/add-photo.component';
 import { MyPipe } from './user-list/user-list.pipe';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MyPipe } from './user-list/user-list.pipe';
     RegistrationComponent,
     ReportListComponent,
     AddPhotoComponent,
-    MyPipe
+    MyPipe,
+    AdminComponent
   ],
   imports: [
     HttpClientModule,

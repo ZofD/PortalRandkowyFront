@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <h4>Zarządzaj użytkownikami</h4>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Nick</th>
+    <th scope="col">Hasło</th>
+    <th scope="col">Mail</th>
+    <th scope="col">Opis</th>
+    <th scope="col">Płeć</th>
+    <th scope="col">Miejscowość</th>
+    <th scope="col">Uprawnienia</th>
+
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let uzytkownik of uzytkownicy; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>
+      <input type="text"  [(ngModel)]="uzytkownik.nick" [disabled]="disabled[i]" class="form-control">
+
+    </td>
+    <td><input type="password" [(ngModel)]="uzytkownik.haslo" [disabled]="disabled[i]" class="form-control"></td>
+
+    <td><input type="text" [(ngModel)]="uzytkownik.mail" [disabled]="disabled[i]" class="form-control"></td>
+    <td><input type="text" [(ngModel)]="uzytkownik.opis" [disabled]="disabled[i]" class="form-control"></td>
+    <td><input type="text" [(ngModel)]="uzytkownik.plec" [disabled]="disabled[i]" class="form-control"></td>
+    <td><input type="text" [(ngModel)]="uzytkownik.misato" [disabled]="disabled[i]" class="form-control"></td>
+    <td><input type="text" [(ngModel)]="uzytkownik.uprawnienia" [disabled]="disabled[i]" class="form-control"></td>
+    <td>
+
+      <button (click)="save(i)" class="btn btn-success">Zapisz</button>
+    </td>
+    <td>
+      <button (click)="delete(i)" class="btn btn-danger">Usuń</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
