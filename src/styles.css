@@ -38,13 +38,14 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 
 .portrait {
   background-color: teal;
-  /* background-image: url(img/serce-ooooo.png);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat; */
   padding: 20px;
   border: 2px solid whitesmoke;
   border-radius: 45%;
   width: 0;
   float: left;
+}
+
+.list-group-item-action{
+  background-color: #E61E1E;
+  border-color: #E61E1E;
 }
