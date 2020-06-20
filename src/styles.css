@@ -42,9 +42,9 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat; */
-  padding: 20px;
+  padding: 17px;
   border: 2px solid whitesmoke;
-  border-radius: 45%;
+  border-radius: 40%;
   width: 0;
   float: left;
 }
