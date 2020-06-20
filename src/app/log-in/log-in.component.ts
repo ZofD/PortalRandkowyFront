@@ -75,14 +75,14 @@ export class LogInComponent implements OnInit {
           localStorage.setItem('data', JSON.stringify(success));
           this.userService.isLoggedIn.next(true);
           if (success.uprawnienia === 1) {
-            this.router.navigateByUrl('user/' + success.id);
+            this.router.navigateByUrl('user/admin');
           }
           else if (success.uprawnienia === 2) {
             this.zalogowany = false;
             this.blokada = true;
           }
-        else {
-            this.router.navigateByUrl('user/' + success.id);
+          else {
+            this.router.navigateByUrl('user');
           }
         } else {
           console.log('błąd');
@@ -118,7 +118,7 @@ export class LogInComponent implements OnInit {
         this.uzytkownicy.splice(id, 1);
       },
       (error) => {
-        console.log('Błąds');
+        console.log('Błąd');
       });
   }
 

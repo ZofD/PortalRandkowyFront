@@ -15,10 +15,10 @@ const routes: Routes = [
   {path: 'log-in', component: LogInComponent},
   {path: 'registration', component: RegistrationComponent},
   {
-    path: 'user/:id', component: UserComponent,
+    path: 'user', component: UserComponent,
     children: [
       {path: 'user-list', component: UserListComponent},
-      {path: 'blog/:id', component: BlogComponent},
+      {path: 'blog', component: BlogComponent},
       {path: 'settings', component: SettingsComponent},
       {path: 'photos', component: PhotosComponent},
       {path: 'report-list', component: ReportListComponent},

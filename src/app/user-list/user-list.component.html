@@ -1,39 +1,5 @@
 <div class="container">
   <div class="row">
-    <!-- <h4>Może to Twoja druga połowa?</h4>
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Nick</th>
-        <th scope="col">Opis</th>
-        <th scope="col">Punkty dopasowania</th>
-
-        <th></th>
-
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let uzytkownik of uzytkownicy">
-        <th scope="row"><div class="portrait"></div></th>
-        <td>
-         {{uzytkownik.uzytkownik.nick}}
-
-        </td>
-        <td>{{uzytkownik.uzytkownik.opis}}</td>
-
-        <td>{{uzytkownik.points}} pkt</td>
-
-        <td>
-
-          <button
-
-            class="btn btn-danger">Zaproponuj znajomość</button>
-        </td>
-
-      </tr>
-      </tbody>
-    </table> -->
     {{wzorzec}}
     <ul class="list-group offset-xl-1 col-xl-10 offset-md-0 col-md-12">
       <li class="list-group-item active"><h4 class="text-center col-12">Może to Twoja druga połowa?</h4></li>
@@ -55,37 +21,17 @@
       </li>
       <li *ngFor="let uzytkownik2 of uzytkownicy1"
           class="list-group-item list-group-item-action">
-          <div class="col-3 nick"><div class="portrait"></div>{{uzytkownik2.nick}}</div>
+          <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;">{{uzytkownik2.nick}}</div></div>
           <div class="col-5 opis">{{uzytkownik2.opis}}</div>
           <div class="col-2 punkty-dopasowania">{{uzytkownik2.points}}</div>
-          <div class="col-2"><button class="w-100 btn btn-danger">dodaj</button></div>
-      </li>
-      <li 
-          class="list-group-item list-group-item-action">
-          <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;">Łukaszek</div></div>
-          <div class="col-5 opis">jestem fajny :) XDD. nnnnnnnnnnnnnnnnnnnnnnnnnn 
-            nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnn nnnnnnnnnn nnnnnnnnn nnnnnnnn
-            nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
-          </div>
-          <div class="col-2 punkty-dopasowania">50</div>
           <div class="col-2"><button class="w-100 btn btn-danger">dodaj</button></div>
       </li>
       <li class="list-group-item active"><h4 class="text-center col-12">Wyniki wyszukiwania</h4></li>
       <li *ngFor="let uzytkownik of uzytkownicy2 | myPipe : wzorzec"
           class="list-group-item list-group-item-action">
-          <div class="col-3 nick"><div class="portrait"></div>{{uzytkownik.nick}}</div>
+          <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;">{{uzytkownik.nick}}</div></div>
           <div class="col-5 opis">{{uzytkownik.opis}}</div>
           <div class="col-2 punkty-dopasowania">{{uzytkownik.points}}</div>
-          <div class="col-2"><button class="w-100 btn btn-danger">dodaj</button></div>
-      </li>
-      <li 
-          class="list-group-item list-group-item-action">
-          <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;">Łukaszek</div></div>
-          <div class="col-5 opis">jestem fajny :) XDD. nnnnnnnnnnnnnnnnnnnnnnnnnn 
-            nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnn nnnnnnnnnn nnnnnnnnn nnnnnnnn
-            nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
-          </div>
-          <div class="col-2 punkty-dopasowania">50</div>
           <div class="col-2"><button class="w-100 btn btn-danger">dodaj</button></div>
       </li>
     </ul>
