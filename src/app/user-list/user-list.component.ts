@@ -13,13 +13,19 @@ export class UserListComponent implements OnInit {
   public uzytkownicy: any[] = [];
   public uzytkownik: any[] = [];
   public zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
-
+  heroe = 'lukasz';
   constructor(private formBuilder: FormBuilder,
-              private userService: UserService, private ref: ChangeDetectorRef) {
+              private userService: UserService, 
+              private ref: ChangeDetectorRef) {
   }
 
   public ngOnInit() {
     this.getAllUzytkownicy();
+    this.ref.detectChanges();
+  }
+
+  public update() {
+    this.ref.detectChanges();
   }
 
   public getAllUzytkownicy() {

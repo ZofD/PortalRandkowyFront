@@ -34,7 +34,7 @@
       </tr>
       </tbody>
     </table> -->
-
+    <h1>{{heroe}}</h1>
     <ul class="list-group offset-xl-1 col-xl-10 offset-md-0 col-md-12">
       <li class="list-group-item active"><h4 class="text-center col-12">Może to Twoja druga połowa?</h4></li>
       <li class="list-group-item active">
@@ -43,7 +43,7 @@
             <input class="form-control w-100" type="search" placeholder="Wyszukaj" aria-label="Search">
           </div>
           <div class="col-4">
-            <button onclick="location.href='/#wyszukiwanie';" class="btn btn-outline-light w-100" type="submit">Szukaj</button>
+            <button class="btn btn-outline-light w-100" type="submit">Szukaj</button>
           </div>
         </form>
       </li>
@@ -54,8 +54,8 @@
       </li>
       <li *ngFor="let uzytkownik of uzytkownicy"
           class="list-group-item list-group-item-action">
-          <div class="col-3 nick"><div class="portrait"></div>{{uzytkownik.uzytkownik.nick}}</div>
-          <div class="col-5 opis">{{uzytkownik.uzytkownik.opis}}</div>
+          <div class="col-3 nick"><div class="portrait"></div>{{uzytkownik.nick}}</div>
+          <div class="col-5 opis">{{uzytkownik.opis}}</div>
           <div class="col-2 punkty-dopasowania">{{uzytkownik.points}}</div>
           <div class="col-2"><button class="w-100 btn btn-danger">dodaj</button></div>
       </li>
@@ -69,29 +69,12 @@
           <div class="col-2 punkty-dopasowania">50</div>
           <div class="col-2"><button class="w-100 btn btn-danger">dodaj</button></div>
       </li>
-    </ul>
-    <ul id="wyszukiwanie" class="list-group offset-xl-1 col-xl-10 offset-md-0 col-md-12">
       <li class="list-group-item active"><h4 class="text-center col-12">Wyniki wyszukiwania</h4></li>
-      <!-- <li class="list-group-item active">
-        <form class="form-inline col-12">
-          <div class="col-8">
-            <input class="form-control w-100" type="search" placeholder="Wyszukaj" aria-label="Search">
-          </div>
-          <div class="col-4">
-            <button href="" class="btn btn-outline-light w-100" type="submit">Szukaj</button>
-          </div>
-        </form>
-      </li> -->
-      <li class="list-group-item active">
-          <div class="col-3">Nick</div>
-          <div class="col-5">Opis</div>
-          <div class="col-2">Punkty dopasowania</div>
-      </li>
-      <li *ngFor="let uzytkownik of uzytkownicy"
+      <li *ngFor="let uzytkownik1 of uzytkownicy"
           class="list-group-item list-group-item-action">
-          <div class="col-3 nick"><div class="portrait"></div>{{uzytkownik.uzytkownik.nick}}</div>
-          <div class="col-5 opis">{{uzytkownik.uzytkownik.opis}}</div>
-          <div class="col-2 punkty-dopasowania">{{uzytkownik.points}}</div>
+          <div class="col-3 nick"><div class="portrait"></div>{{uzytkownik1.nick}}</div>
+          <div class="col-5 opis">{{uzytkownik1.opis}}</div>
+          <div class="col-2 punkty-dopasowania">{{uzytkownik1.points}}</div>
           <div class="col-2"><button class="w-100 btn btn-danger">dodaj</button></div>
       </li>
       <li 
