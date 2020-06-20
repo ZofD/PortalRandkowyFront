@@ -7,12 +7,12 @@
           <div class="col-3">Osoba zgłaszana</div>
           <div class="col-2">Data Zgłoszenia</div>
       </li>
-        <li *ngFor="let zgloszenie of zgloszenia" class="list-group-item list-group-item-action">
+        <li *ngFor="let zgloszenie of zgloszenia; index as i" class="list-group-item list-group-item-action">
           <div class="col-3 nick">{{zgloszenie.uzytkownikZglaszajacy.nick}}</div>
           <div class="col-3 nick">{{zgloszenie.uzytkownikZglaszany.nick}}</div>
           <div class="col-2 data"></div>
-          <div class="col-2"><button class="w-100 btn btn-danger">Przyjmij</button></div>
-          <div class="col-2"><button class="w-100 btn btn-danger">Odrzuć</button></div>
+          <div class="col-2"><button (click)="zablokuj(i, zgloszenie.uzytkownikZglaszany)" class="w-100 btn btn-danger">Przyjmij</button></div>
+          <div class="col-2"><button (click)="delete(i)" class="w-100 btn btn-dark">Usuń</button></div>
           <div class="col-12 opis">{{zgloszenie.tresc}}</div>
         </li>
       </ul>

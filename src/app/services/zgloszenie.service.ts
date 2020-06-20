@@ -13,4 +13,9 @@ export class ZgloszenieService {
   public getAllZgloszenia() {
     return this.http.get(this.host + 'api/zgloszenie');
   }
+
+  public deleteZgloszenie(body) {
+    return this.http.request('delete', this.host + 'api/zgloszenie', {body});
+  }
+
 }
