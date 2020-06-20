@@ -1,17 +1,14 @@
 <div class="container">
   <div class="row">
-    {{wzorzec}}
     <ul class="list-group offset-xl-1 col-xl-10 offset-md-0 col-md-12">
       <li class="list-group-item active"><h4 class="text-center col-12">Może to Twoja druga połowa?</h4></li>
       <li class="list-group-item active">
         <form class="form-inline col-12">
-          <div class="col-8">
-            <input [(ngModel)]="wzorzec"
+          <div class="col">
+            <input [(ngModel)]="wzorzec" name="search"
                 class="form-control w-100" type="search" placeholder="Wyszukaj" aria-label="Search">
           </div>
-          <div class="col-4">
-            <button (click)="update()" class="btn btn-outline-light w-100" type="submit">Szukaj</button>
-          </div>
+
         </form>
       </li>
       <li class="list-group-item active">
@@ -19,21 +16,25 @@
           <div class="col-5">Opis</div>
           <div class="col-2">Punkty dopasowania</div>
       </li>
-      <li *ngFor="let uzytkownik2 of uzytkownicy1"
-          class="list-group-item list-group-item-action">
-          <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;">{{uzytkownik2.nick}}</div></div>
-          <div class="col-5 opis">{{uzytkownik2.opis}}</div>
-          <div class="col-2 punkty-dopasowania">{{uzytkownik2.points}}</div>
-          <div class="col-2"><button class="w-100 btn btn-danger">dodaj</button></div>
-      </li>
-      <li class="list-group-item active"><h4 class="text-center col-12">Wyniki wyszukiwania</h4></li>
-      <li *ngFor="let uzytkownik of uzytkownicy2 | myPipe : wzorzec"
-          class="list-group-item list-group-item-action">
-          <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;">{{uzytkownik.nick}}</div></div>
+      <div *ngIf="wzorzec.length > 0">
+        <li class="list-group-item active"><h4 class="text-center col-12">Wyniki wyszukiwania</h4></li>
+        <li *ngFor="let uzytkownik of uzytkownicy | myPipe : wzorzec"
+            class="list-group-item list-group-item-action">
+          <div class="col-3 nick"><div class="portrait"></div>{{uzytkownik.nick}}</div>
           <div class="col-5 opis">{{uzytkownik.opis}}</div>
           <div class="col-2 punkty-dopasowania">{{uzytkownik.points}}</div>
           <div class="col-2"><button class="w-100 btn btn-danger">dodaj</button></div>
+        </li>
+    </div>
+      <li class="list-group-item active"><h4 class="text-center col-12">Propozycje według dopasowania</h4>
+      <li *ngFor="let uzytkownik of sugestie"
+          class="list-group-item list-group-item-action">
+          <div class="col-3 nick"><div class="portrait"></div>{{uzytkownik.uzytkownik.nick}}</div>
+          <div class="col-5 opis">{{uzytkownik.uzytkownik.opis}}</div>
+          <div class="col-2 punkty-dopasowania">{{uzytkownik.points}}</div>
+          <div class="col-2"><button class="w-100 btn btn-danger">Dodaj</button></div>
       </li>
+
     </ul>
   </div>
 </div>
