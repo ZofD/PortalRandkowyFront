@@ -13,11 +13,10 @@ import { CzatComponent } from './czat/czat.component';
 import {AddPhotoComponent} from './add-photo/add-photo.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/log-in', pathMatch: 'full' },
-  { path: 'log-in', component: LogInComponent},
-  { path: 'add-photo', component: AddPhotoComponent},
-  { path: 'registration', component: RegistrationComponent},
-  { path: 'user/:id', component: UserComponent,
+  {path: '', redirectTo: '/log-in', pathMatch: 'full'},
+  {path: 'log-in', component: LogInComponent},
+  {path: 'registration', component: RegistrationComponent},
+  {path: 'add-photo', component: AddPhotoComponent},
   {
     path: 'user', component: UserComponent,
     children: [

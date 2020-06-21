@@ -51,7 +51,6 @@ export class BlogComponent implements OnInit {
     this.newZwiazek.uzytkownikB = zapraszany;
     console.log(this.newZwiazek);
     this.zwiazekService.addZwiazek(this.newZwiazek).subscribe((result: any[]) => {
-      this.uzytkownicy = result;
       console.log(result);
     }, (error) => {
       console.log(error);

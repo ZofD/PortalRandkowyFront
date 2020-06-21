@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-4 fake-img bg-dark"></div>
 
-    <div *ngIf="uzytkownicy != undefined" class="col-8">
+    <div *ngIf="uzytkownicy !== undefined" class="col-8">
       <small>Nick</small><h1>{{uzytkownicy.nick}}</h1>
       <small>Miejscowość</small> <h3>{{uzytkownicy.miejscowosc}}</h3>
       <small>Płeć</small><h3><div *ngIf="uzytkownicy.plec === false; else elseBlock" >Kobieta</div><ng-template #elseBlock>Mężczyzna</ng-template></h3>
