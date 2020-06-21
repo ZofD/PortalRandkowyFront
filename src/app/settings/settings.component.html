@@ -2,34 +2,34 @@
   <div class="row">
     <div class="col-6">
       <div class="form-group">
-        <label>Nick:</label>
-        <input [(ngModel)]="zalogowanyUzytkownik.nick" class="form-control"/><br>
-        <label>E-mail:</label>
-        <input [(ngModel)]="zalogowanyUzytkownik.mail" class="form-control"/><br>
-        <label>Hasło:</label>
-        <input type="password" [(ngModel)]="zalogowanyUzytkownik.haslo" class="form-control"/><br>
-        <label>Płeć:</label>
+        <small>Nick</small>
+        <input  type="text" [(ngModel)]="zalogowanyUzytkownik.nick" class="form-control"/>
+        <small>E-mail</small>
+        <input  type="text" [(ngModel)]="zalogowanyUzytkownik.mail" class="form-control"/>
+        <small>Hasło</small>
+        <input type="password" [(ngModel)]="zalogowanyUzytkownik.haslo" class="form-control"/>
+        <small>Płeć</small>
         <input *ngIf="isMezczyzna()"
                type="text" class="form-control" value="Mężczyzna" disabled/>
         <input *ngIf="isKobieta()"
-               type="text" class="form-control" value="Kobieta" disabled/><br>
-        <label>Opis:</label>
-        <input [(ngModel)]="zalogowanyUzytkownik.opis" class="form-control"/><br>
-        <label>Miejscowość:</label>
-        <input [(ngModel)]="zalogowanyUzytkownik.miejscowosc" class="form-control"/><br>
-        <label>Wybierz pierwsze zainteresowanie:</label><br>
+               type="text" class="form-control" value="Kobieta" disabled/>
+        <small>Opis</small>
+        <input  type="text"  [(ngModel)]="zalogowanyUzytkownik.opis" class="form-control"/>
+        <small>Miejscowość</small>
+        <input  type="text"  [(ngModel)]="zalogowanyUzytkownik.miejscowosc" class="form-control"/><br>
+        <small>Wybierz pierwsze zainteresowanie</small><br>
         <form [formGroup]="podkategoriaForm">
           <select formControlName="podkategoriaControl">
-            <option [value]="podkategoria.id" *ngFor="let podkategoria of podkategorie">{{podkategoria.nazwa}}</option>
+            <option [value]="podkategoria.id" *ngFor="let podkategoria of podkategorie">{{podkategoria.nazwa}}</option><br>
           </select><br><br>
-          <label>Wybierz drugie zainteresowanie:</label><br>
+          <small>Wybierz drugie zainteresowanie</small><br>
           <select formControlName="podkategoriaControl2">
-            <option [value]="podkategoria.id" *ngFor="let podkategoria of podkategorie">{{podkategoria.nazwa}}</option>
+            <option [value]="podkategoria.id" *ngFor="let podkategoria of podkategorie">{{podkategoria.nazwa}}</option><br>
           </select><br><br>
-          <label>Wybierz trzecie zainteresowanie:</label><br>
+          <small>Wybierz trzecie zainteresowanie</small><br>
           <select formControlName="podkategoriaControl3">
-            <option [value]="podkategoria.id" *ngFor="let podkategoria of podkategorie">{{podkategoria.nazwa}}</option>
-          </select><br><br>
+            <option [value]="podkategoria.id" *ngFor="let podkategoria of podkategorie">{{podkategoria.nazwa}}</option><br>
+          </select><br>
         </form>
         <br>
         <button (click)="updateUzytkownik()" class="btn btn-success">Aktualizuj</button>
