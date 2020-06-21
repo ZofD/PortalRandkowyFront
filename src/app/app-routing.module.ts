@@ -7,11 +7,13 @@ import { SettingsComponent } from './settings/settings.component';
 import { PhotosComponent } from './photos/photos.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { ReportListComponent } from './report-list/report-list.component'
+import { ReportListComponent } from './report-list/report-list.component';
+import {AddPhotoComponent} from './add-photo/add-photo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/log-in', pathMatch: 'full' },
   { path: 'log-in', component: LogInComponent},
+  { path: 'add-photo', component: AddPhotoComponent},
   { path: 'registration', component: RegistrationComponent},
   { path: 'user/:id', component: UserComponent,
     children: [
