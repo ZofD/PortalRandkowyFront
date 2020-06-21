@@ -14,13 +14,12 @@ export class LogInComponent implements OnInit {
     mail: new FormControl(),
     plec: new FormControl()
   });
-  // public newUser: FormGroup;
   public uzytkownicy: object[] = [];
   public errorRejestracja = false;
   public error = false;
+  public blokada = false;
   public zalogowany = JSON.parse(localStorage.getItem('zalogowany'));
   public disabled: boolean[] = [];
-  public newUzytkownik = {plec: true, nick: '', mail: '', haslo: '', opis: '', uprawnienia: 0, lokalizacjaX: 1, lokalizacjaY: 1};
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
@@ -36,12 +35,6 @@ export class LogInComponent implements OnInit {
     this.getAllUser();
   }
 
-  public czyZalogowany(zalogowany) {
-    if (zalogowany) {
-      this.ref.detectChanges();
-      this.router.navigateByUrl('');
-    }
-  }
 
   public getAllUser() {
     this.userService.getAllUser().subscribe((result: object[]) => {
@@ -51,11 +44,11 @@ export class LogInComponent implements OnInit {
   }
 
   public addUser(newUser: New): void {
-    if (newUser.plec !== ('Kobieta' && 'Mężczyzna') || newUser.mail.length === 0) {
-      this.errorRejestracja = true;
-    } else {
+    if (newUser.plec !== null && newUser.mail !== null) {
       this.userService.setNewUser(newUser);
       this.router.navigateByUrl('/registration');
+    } else {
+      this.errorRejestracja = true;
     }
   }
 
@@ -63,8 +56,10 @@ export class LogInComponent implements OnInit {
   public zaloguj(data: Login): void {
     if (data.haslo.length === 0 || data.mail.length === 0){
       this.error = true;
+      this.blokada = false;
     } else {
       this.error = false;
+      this.blokada = false;
       this.userService.existUser(data).subscribe((success: any) => {
         if (success) {
           this.zalogowany = true;
@@ -72,9 +67,14 @@ export class LogInComponent implements OnInit {
           localStorage.setItem('data', JSON.stringify(success));
           this.userService.isLoggedIn.next(true);
           if (success.uprawnienia === 1) {
-            this.router.navigateByUrl('/admin');
-          } else {
-            this.router.navigateByUrl('user/' + success.id);
+            this.router.navigateByUrl('user/admin');
+          }
+          else if (success.uprawnienia === 2) {
+            this.zalogowany = false;
+            this.blokada = true;
+          }
+          else {
+            this.router.navigateByUrl('user/user-list');
           }
         } else {
           console.log('błąd');
@@ -91,26 +91,13 @@ export class LogInComponent implements OnInit {
     }
   }
 
-  makeEnabled(id) {
-    this.disabled[id] = false;
-  }
-
-  public save(id) {
-    this.userService.updateUser(this.uzytkownicy[id]).subscribe((success) => {
-      console.log('Sukces');
-      this.getAllUser();
-    }, (error => {
-      console.log('Error');
-    }));
-  }
-
   public delete(id) {
     console.log(this.uzytkownicy[id]);
     this.userService.deleteUser(this.uzytkownicy[id]).subscribe((success) => {
         this.uzytkownicy.splice(id, 1);
       },
       (error) => {
-        console.log('Błąds');
+        console.log('Błąd');
       });
   }
 

@@ -1,14 +1,10 @@
-.container {
-  margin-top: 50px;
-}
-
 h4 {
   margin-bottom: 0;
   margin-left: 1em;
 }
 
 .list-group-item {
-  /*border-color: ;*/
+  padding: 15px 0;
 }
 
 h4 span {
@@ -22,4 +18,21 @@ h4 span {
 
 .active h4 {
   margin: .4em 0;
+}
+
+.active {
+  text-align: center;
+}
+
+.nick {
+  font-size: 105%;
+}
+
+.opis {
+  font-size: 90%;
+  color: slategrey;
+}
+
+.punkty-dopasowania {
+  text-align: center;
 }

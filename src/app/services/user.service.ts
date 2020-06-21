@@ -37,15 +37,20 @@ export class UserService {
     return this.http.get(this.host + 'api/uzytkownik/nick/' + data.haslo + '/password/' + data.mail);
   }
 
-  public getNewUser(): New {
-    return this.newUser;
-  }
-
-  public setNewUser(newUser: New): void {
-    this.newUser = newUser;
-  }
 
   public getSuggestions(id) {
     return this.http.get(this.host + 'api/uzytkownik/uzytkownik/' + id);
+  }
+
+  public getUser(id) {
+    return this.http.get(this.host + 'api/uzytkownik/' + id);
+  }
+
+  public setNewUser(newUser: New) {
+    this.newUser =  newUser;
+  }
+
+  public getNewUser(): New {
+    return this.newUser;
   }
 }
