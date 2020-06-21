@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { User } from '../user/user';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -10,7 +9,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
-  user: User;
+  public zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
 
   constructor(
     private userService: UserService,
@@ -19,13 +18,6 @@ export class BlogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
-  }
-
-  getUser(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUserById(id)
-      .subscribe(user => this.user = user);
   }
 
   goBack(): void {

@@ -17,6 +17,7 @@ import { ReportListComponent } from './report-list/report-list.component';
 import { AddPhotoComponent } from './add-photo/add-photo.component';
 import { MyPipe } from './user-list/user-list.pipe';
 import { AdminComponent } from './admin/admin.component';
+import { CzatComponent } from './czat/czat.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AdminComponent } from './admin/admin.component';
     ReportListComponent,
     AddPhotoComponent,
     MyPipe,
-    AdminComponent
+    AdminComponent,
+    CzatComponent
   ],
   imports: [
     HttpClientModule,

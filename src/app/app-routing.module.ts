@@ -9,6 +9,7 @@ import {UserListComponent} from './user-list/user-list.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {ReportListComponent} from './report-list/report-list.component';
 import {AdminComponent} from './admin/admin.component';
+import { CzatComponent } from './czat/czat.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/log-in', pathMatch: 'full'},
@@ -22,7 +23,8 @@ const routes: Routes = [
       {path: 'settings', component: SettingsComponent},
       {path: 'photos', component: PhotosComponent},
       {path: 'report-list', component: ReportListComponent},
-      {path: 'admin', component: AdminComponent}
+      {path: 'admin', component: AdminComponent},
+      {path: 'czat', component: CzatComponent}
     ]
   }
 ];

@@ -82,7 +82,7 @@ export class LogInComponent implements OnInit {
             this.blokada = true;
           }
           else {
-            this.router.navigateByUrl('user');
+            this.router.navigateByUrl('user/user-list');
           }
         } else {
           console.log('błąd');
