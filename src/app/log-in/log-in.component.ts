@@ -14,14 +14,12 @@ export class LogInComponent implements OnInit {
     mail: new FormControl(),
     plec: new FormControl()
   });
-  // public newUser: FormGroup;
   public uzytkownicy: object[] = [];
   public errorRejestracja = false;
   public error = false;
   public blokada = false;
   public zalogowany = JSON.parse(localStorage.getItem('zalogowany'));
   public disabled: boolean[] = [];
-  public newUzytkownik = {plec: true, nick: '', mail: '', haslo: '', opis: '', uprawnienia: 0, lokalizacjaX: 1, lokalizacjaY: 1};
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
@@ -37,12 +35,6 @@ export class LogInComponent implements OnInit {
     this.getAllUser();
   }
 
-  public czyZalogowany(zalogowany) {
-    if (zalogowany) {
-      this.ref.detectChanges();
-      this.router.navigateByUrl('');
-    }
-  }
 
   public getAllUser() {
     this.userService.getAllUser().subscribe((result: object[]) => {
@@ -97,19 +89,6 @@ export class LogInComponent implements OnInit {
         console.log('Error');
       });
     }
-  }
-
-  makeEnabled(id) {
-    this.disabled[id] = false;
-  }
-
-  public save(id) {
-    this.userService.updateUser(this.uzytkownicy[id]).subscribe((success) => {
-      console.log('Sukces');
-      this.getAllUser();
-    }, (error => {
-      console.log('Error');
-    }));
   }
 
   public delete(id) {
