@@ -1,18 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col-4 fake-img bg-dark"></div>
-    <div class="col-8">
-      <h1>{{zalogowanyUzytkownik.nick}}</h1>
-      <h3>{{zalogowanyUzytkownik.miejscowosc}}</h3>
-      <h3>{{zalogowanyUzytkownik.plec}}</h3>
-      <p class="w-100 jumbotron">{{zalogowanyUzytkownik.opis}}</p>
-      <button class="btn btn-success">Dodaj post</button>
+
+    <div *ngIf="uzytkownicy != undefined" class="col-8">
+      <small>Nick</small><h1>{{uzytkownicy.nick}}</h1>
+      <small>Miejscowość</small> <h3>{{uzytkownicy.miejscowosc}}</h3>
+      <small>Płeć</small><h3><div *ngIf="uzytkownicy.plec === false; else elseBlock" >Kobieta</div><ng-template #elseBlock>Mężczyzna</ng-template></h3>
+      <small>Zainteresowania</small> <h3>{{uzytkownicy.podKategorieList[0].nazwa}}, {{uzytkownicy.podKategorieList[1].nazwa}}, {{uzytkownicy.podKategorieList[2].nazwa}}</h3>
+      <small>Opis</small>
+      <p class="w-100 jumbotron">{{uzytkownicy.opis}}</p>
+      <div *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id; else innyNizZalogowany">
+        <button class="btn btn-success">Dodaj post</button></div>
     </div>
+    <ng-template #innyNizZalogowany><button (click)="addZwiazek(uzytkownicy)" class="btn btn-danger">Dodaj do znajomych</button></ng-template>
     <header class="jumbotron w-100">
       <h1 class="text-center">Posty</h1>
     </header>
-    <div 
-        class="post jumbotron offset-2 col-8">
+    <div  class="post jumbotron offset-2 col-8">
       <div class="w-100">
         <h1 class="">Tytuł ze zdjęciem</h1>
         <h4 class="">Data</h4>
@@ -26,7 +30,7 @@
         <button class="btn btn-danger">Usuń post</button>
       </div>
     </div>
-    <div 
+    <div
         class="post jumbotron offset-2 col-8">
       <div class="w-100 fake-img bg-dark">
         <h1 class="">Tytuł bez zdjęcia</h1>

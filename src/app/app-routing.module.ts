@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'user', component: UserComponent,
     children: [
       {path: 'user-list', component: UserListComponent},
-      {path: 'blog', component: BlogComponent},
+      {path: 'blog/:id', component: BlogComponent},
       {path: 'settings', component: SettingsComponent},
       {path: 'photos', component: PhotosComponent},
       {path: 'report-list', component: ReportListComponent},
