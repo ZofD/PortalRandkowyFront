@@ -33,10 +33,8 @@ export class RegistrationComponent implements OnInit {
     mail: '',
     haslo: '',
     opis: '',
-    misato: '',
+    miejscowosc: '',
     uprawnienia: 0,
-    lokalizacjaX: 1,
-    lokalizacjaY: 1,
     podKategorieList: [{id: this.podkategoriaForm.value.podkategoriaControl},
       {id: this.podkategoriaForm2.value.podkategoriaControl2},
       {id: this.podkategoriaForm3.value.podkategoriaControl3}]
@@ -55,11 +53,6 @@ export class RegistrationComponent implements OnInit {
     this.newUser = this.userService.getNewUser();
   }
 
-  ngOnDestroy(): void {
-    this.podkategorie = [];
-    this.podkategorie2 = [];
-    this.podkategorie3 = [];
-  }
 
   public getPodkategorie() {
     this.podkategorieService.getAllPodkategorie().subscribe((result: any[]) => {
@@ -83,7 +76,7 @@ export class RegistrationComponent implements OnInit {
         this.newUzytkownik.plec !== '' &&
         this.newUzytkownik.mail !== '' &&
         this.newUzytkownik.nick !== '' &&
-        this.newUzytkownik.misato !== '' &&
+        this.newUzytkownik.miejscowosc !== '' &&
         this.newUzytkownik.opis !== '') {
       this.userService.addUser(this.newUzytkownik).subscribe((success) => {
         if (success) {
