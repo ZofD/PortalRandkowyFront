@@ -13,36 +13,35 @@
         <button class="btn btn-success">Dodaj post</button></div>
     </div>
     <ng-template #innyNizZalogowany><button (click)="addZwiazek(uzytkownicy)" class="btn btn-danger">Dodaj do znajomych</button></ng-template>
+
     <header class="jumbotron w-100">
       <h1 class="text-center">Posty</h1>
     </header>
-    <div  class="post jumbotron offset-2 col-8">
+    <div *ngFor="let post of post" class="post jumbotron offset-2 col-8">
+    <div *ngIf="post.status !== 0 && post.link !== '' && post.uzytkownik.id === uzytkownicy.id" >
       <div class="w-100">
-        <h1 class="">Tytuł ze zdjęciem</h1>
-        <h4 class="">Data</h4>
+        <h1 class=""></h1>
+        <h4 class=""></h4>
       </div>
-      <div class="w-100 fake-img bg-dark"></div>
+      <img src="{{post.link}}" class="img-fluid w-100" alt="Problem z wczytywaniem obrazu">
       <div class="w-100">
         <div class="opis">
-          opis lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+        {{post.opis}}
         </div>
-        <button class="btn btn-danger">Usuń post</button>
-      </div>
-    </div>
-    <div
-        class="post jumbotron offset-2 col-8">
+        <button *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id" (click)="delete(post)" class="btn btn-danger">Usuń post</button>
+
+    </div></div>
+    <div *ngIf="post.status !== 0 && post.link === '' && post.uzytkownik.id === uzytkownicy.id" >
       <div class="w-100 fake-img bg-dark">
-        <h1 class="">Tytuł bez zdjęcia</h1>
-        <h4 class="">Data</h4>
+        <h1 class=""></h1>
+        <h4 class=""></h4>
       </div>
       <div class="w-100">
         <div class="opis">
-          opis lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+          {{post.opis}}
         </div>
-        <button class="btn btn-danger">Usuń post</button>
-      </div>
+        <button *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id" (click)="delete(post)" class="btn btn-danger">Usuń post</button>
+      </div> </div>
     </div>
   </div>
 </div>

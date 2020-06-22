@@ -6,6 +6,7 @@ import {take} from 'rxjs/operators';
 import {UserService} from '../services/user.service';
 import {any} from 'codelyzer/util/function';
 import {ZwiazekService} from '../services/zwiazek.service';
+import {ZdjeciaService} from '../services/zdjecia.service';
 
 @Component({
   selector: 'app-blog',
@@ -15,6 +16,7 @@ import {ZwiazekService} from '../services/zwiazek.service';
 export class BlogComponent implements OnInit {
   public zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
   public uzytkownicy: any;
+  public post: any;
   public newZwiazek = {
     zgodaBlokada: 1,
     uzytkownikA: any,
@@ -26,12 +28,13 @@ export class BlogComponent implements OnInit {
     private route: ActivatedRoute,
     private ref: ChangeDetectorRef,
     private zwiazekService: ZwiazekService,
+    private zdjeciaService: ZdjeciaService,
     private location: Location
   ) {
   }
 
   public ngOnInit(): void {
-
+    this.getAllPosts();
     this.route.paramMap.pipe(take(1)).subscribe(params => {
       const id: number = +params.get('id');
 
@@ -44,6 +47,25 @@ export class BlogComponent implements OnInit {
       });
     });
 
+  }
+
+  public getAllPosts() {
+    this.zdjeciaService.getAllImages().subscribe((result: object[]) => {
+      this.post = result;
+      console.log(result);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  public delete(post) {
+    this.zdjeciaService.deleteImage(post).subscribe((success) => {
+        console.log(success);
+        this.getAllPosts();
+      },
+      (error) => {
+        console.log(error);
+      });
   }
 
   public addZwiazek(zapraszany) {
