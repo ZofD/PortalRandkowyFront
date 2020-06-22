@@ -20,16 +20,16 @@
         <li class="list-group-item active"><h4 class="text-center col-12">Wyniki wyszukiwania</h4></li>
         <li *ngFor="let uzytkownik of uzytkownicy | myPipe : wzorzec"
             class="list-group-item list-group-item-action">
-      <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;">{{uzytkownik.nick}}</div></div>
+          <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;"><a routerLink="../blog/{{uzytkownik.id}}" class="nav-link">{{uzytkownik.nick}}</a></div></div>
           <div class="col-5 opis">{{uzytkownik.opis}}</div>
           <div class="col-2 punkty-dopasowania">{{uzytkownik.points}}</div>
-          <div class="col-2"><button (click)="addZwiazek(uzytkownik)" class="w-100 btn btn-danger">Dodaj</button></div>
+          <div *ngIf="uzytkownik.id !== zalogowanyUzytkownik.id"  class="col-2"><button (click)="addZwiazek(uzytkownik)" class="w-100 btn btn-danger">Dodaj</button></div>
         </li>
     </div>
       <li class="list-group-item active"><h4 class="text-center col-12">Propozycje według dopasowania</h4>
       <li *ngFor="let uzytkownik of sugestie"
           class="list-group-item list-group-item-action">
-          <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;">{{uzytkownik.uzytkownik.nick}}</div></div>
+      <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;" > <a routerLink="../blog/{{uzytkownik.uzytkownik.id}}" class="nav-link">{{uzytkownik.uzytkownik.nick}}</a></div></div>
           <div class="col-5 opis">{{uzytkownik.uzytkownik.opis}}</div>
           <div class="col-2 punkty-dopasowania">{{uzytkownik.points}}</div>
           <div class="col-2"><button (click)="addZwiazek(uzytkownik)" class="w-100 btn btn-danger">Dodaj</button></div>

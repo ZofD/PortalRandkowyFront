@@ -14,7 +14,6 @@ import { UserListComponent } from './user-list/user-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReportListComponent } from './report-list/report-list.component';
-import { AddPhotoComponent } from './add-photo/add-photo.component';
 import { MyPipe } from './user-list/user-list.pipe';
 import { AdminComponent } from './admin/admin.component';
 import { CzatComponent } from './czat/czat.component';
@@ -30,7 +29,6 @@ import { CzatComponent } from './czat/czat.component';
     UserListComponent,
     RegistrationComponent,
     ReportListComponent,
-    AddPhotoComponent,
     MyPipe,
     AdminComponent,
     CzatComponent

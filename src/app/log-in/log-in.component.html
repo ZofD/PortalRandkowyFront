@@ -2,10 +2,10 @@
   <nav class="row">
     <form class="offset-xl-2 col-xl-3" [formGroup]="uzytkownikCzyIstnieje" (ngSubmit)="zaloguj(uzytkownikCzyIstnieje.value)">
       <div class="col-12 form-group">
-        <input type="text" formControlName="mail">
         <small class="form-text text-muted">E-mail</small>
+        <input type="text" formControlName="mail">
+        <small class="form-text text-muted">Hasło</small>
         <input type="password" formControlName="haslo">
-        <small class="form-text text-muted">Haslo</small>
         <input class="btn btn-danger" type="submit" value="Zaloguj" >
         <div *ngIf="error"><br><br>Podałeś błędne dane!</div>
         <div *ngIf="blokada"><br><br>Twoje konto jest zablokowane!</div>
@@ -23,9 +23,9 @@
             <input type="radio" class="custom-control-input" id="true" value="true" formControlName="plec" >
             <label class="custom-control-label" for="true">Mężczyzna</label>
           </div>
-        </div>
+        </div>     <small class="form-text text-muted">E-mail</small>
         <input type="email" formControlName="mail" formControlName="mail" required>
-        <small class="form-text text-muted">E-mail</small>
+
         <input  class="btn btn-danger" type="submit" value="Zarejestruj">
         <div *ngIf="errorRejestracja"><br><br>Powyższe pola są obowiązkowe!</div>
       </div>
