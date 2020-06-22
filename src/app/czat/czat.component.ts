@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostPipe } from '../user-list/user-list.pipe';
 
 @Component({
   selector: 'app-czat',

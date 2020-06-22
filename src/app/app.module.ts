@@ -14,7 +14,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReportListComponent } from './report-list/report-list.component';
-import { MyPipe } from './user-list/user-list.pipe';
+import { MyPipe, PostPipe } from './user-list/user-list.pipe';
 import { AdminComponent } from './admin/admin.component';
 import { CzatComponent } from './czat/czat.component';
 
@@ -30,6 +30,7 @@ import { CzatComponent } from './czat/czat.component';
     RegistrationComponent,
     ReportListComponent,
     MyPipe,
+    PostPipe,
     AdminComponent,
     CzatComponent
   ],
@@ -41,7 +42,10 @@ import { CzatComponent } from './czat/czat.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [MyPipe],
+  providers: [
+    MyPipe,
+    PostPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,3 +6,10 @@ export class MyPipe implements PipeTransform {
     return value.filter(value => value.nick.includes(wzorzec));
   }
 }
+
+@Pipe({name: 'postPipe'})
+export class PostPipe implements PipeTransform {
+  transform(value: any[], uzytkownicy: any): any {
+    return value.filter(value => value.status !== 0 && value.uzytkownik.id === uzytkownicy.id);
+  }
+}

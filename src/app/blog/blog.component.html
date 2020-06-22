@@ -31,8 +31,8 @@
     <header class="jumbotron w-100">
       <h1 class="text-center">Posty</h1>
     </header>
-    <div *ngFor="let post of post" class="post jumbotron offset-2 col-8">
-    <div *ngIf="post.status !== 0 && post.link !== '' && post.uzytkownik.id === uzytkownicy.id" >
+    <div *ngFor="let post of post | postPipe : uzytkownicy" class="post jumbotron offset-2 col-8">
+    <div *ngIf="" >
       <div class="w-100">
         <h1 class="">{{post.tytul}}</h1>
         <h4 class="">{{post.dataDodania.slice(0,10)}}</h4>
