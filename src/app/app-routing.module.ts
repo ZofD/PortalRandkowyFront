@@ -10,13 +10,11 @@ import {RegistrationComponent} from './registration/registration.component';
 import {ReportListComponent} from './report-list/report-list.component';
 import {AdminComponent} from './admin/admin.component';
 import { CzatComponent } from './czat/czat.component';
-import {AddPhotoComponent} from './add-photo/add-photo.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/log-in', pathMatch: 'full'},
   {path: 'log-in', component: LogInComponent},
   {path: 'registration', component: RegistrationComponent},
-  {path: 'add-photo', component: AddPhotoComponent},
   {
     path: 'user', component: UserComponent,
     children: [

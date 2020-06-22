@@ -10,9 +10,23 @@
       <small>Opis</small>
       <p class="w-100 jumbotron">{{uzytkownicy.opis}}</p>
       <div *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id; else innyNizZalogowany">
-        <button class="btn btn-success">Dodaj post</button></div>
+        <div *ngIf="dodajPost === false">
+        <button class="btn btn-success" (click)="wysun()">Dodaj post</button></div></div>
+      <ng-template #innyNizZalogowany><button (click)="addZwiazek(uzytkownicy)" class="btn btn-danger">Dodaj do znajomych</button></ng-template>
+      <div  *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id && dodajPost === true" class="form-group">         <small>Tytuł posta</small>
+        <input  type="text" [(ngModel)]="newZdjecia.tytul" class="form-control"/>
+        <small>Opis posta</small>
+        <input  type="text" [(ngModel)]="newZdjecia.opis" class="form-control"/>
+        <small>Wybierz zdjęcie</small>
+        <label class="image-upload-container ">  </label><br>
+
+          <input  type="file"  accept="image/*" (change)="onFileChanged($event)"><br>
+
+
+        <button class="btn btn-success" (click)="onUpload()" >Wyślij post</button>
+        <button class="btn btn-success" (click)="wysun()" >Anuluj</button>
     </div>
-    <ng-template #innyNizZalogowany><button (click)="addZwiazek(uzytkownicy)" class="btn btn-danger">Dodaj do znajomych</button></ng-template>
+
 
     <header class="jumbotron w-100">
       <h1 class="text-center">Posty</h1>
@@ -20,8 +34,8 @@
     <div *ngFor="let post of post" class="post jumbotron offset-2 col-8">
     <div *ngIf="post.status !== 0 && post.link !== '' && post.uzytkownik.id === uzytkownicy.id" >
       <div class="w-100">
-        <h1 class=""></h1>
-        <h4 class=""></h4>
+        <h1 class="">{{post.tytul}}</h1>
+        <h4 class="">{{post.dataDodania.slice(0,10)}}</h4>
       </div>
       <img src="{{post.link}}" class="img-fluid w-100" alt="Problem z wczytywaniem obrazu">
       <div class="w-100">
@@ -33,8 +47,8 @@
     </div></div>
     <div *ngIf="post.status !== 0 && post.link === '' && post.uzytkownik.id === uzytkownicy.id" >
       <div class="w-100 fake-img bg-dark">
-        <h1 class=""></h1>
-        <h4 class=""></h4>
+        <h1 class="">{{post.tytul}}</h1>
+        <h4 class="">{{post.dataDodania.slice(0,10)}}</h4>
       </div>
       <div class="w-100">
         <div class="opis">
