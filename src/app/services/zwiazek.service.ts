@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
@@ -11,7 +11,16 @@ export class ZwiazekService {
 
   constructor(private http: HttpClient) {
   }
+
   public addZwiazek(body): Observable<any> {
     return this.http.post(this.host + 'api/zwiazek', body);
+  }
+
+  public banZwiazek(body): Observable<any> {
+    return this.http.put(this.host + 'api/zwiazek', body);
+  }
+
+  public czyZwiazek(uzytkownikA, uzytkownikB) {
+    return this.http.get(this.host + 'api/zwiazek/uzytkownikA/' + uzytkownikA + '/uzytkownikB/' + uzytkownikB);
   }
 }

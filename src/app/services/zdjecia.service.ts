@@ -26,6 +26,10 @@ export class ZdjeciaService {
     return this.http.request('delete', this.host + 'api/zdjecia', {body});
   }
 
+  public deleteProfileImage(id) {
+    return this.http.request('delete', this.host + 'api/zdjecia/uzytkownik/' + id);
+  }
+
   public addImage(body) {
     return this.http.post(this.host + 'api/zdjecia', body);
   }
