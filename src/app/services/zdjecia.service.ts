@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
@@ -16,6 +16,10 @@ export class ZdjeciaService {
 
   public getAllImages() {
     return this.http.get(this.host + 'api/zdjecia');
+  }
+
+  public getAllImagesByUser(id) {
+    return this.http.get(this.host + 'api/zdjecia/uzytkownik/' + id);
   }
 
   public deleteImage(body) {

@@ -4,7 +4,6 @@ import {UserComponent} from './user/user.component';
 import {BlogComponent} from './blog/blog.component';
 import {LogInComponent} from './log-in/log-in.component';
 import {SettingsComponent} from './settings/settings.component';
-import {PhotosComponent} from './photos/photos.component';
 import {UserListComponent} from './user-list/user-list.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {ReportListComponent} from './report-list/report-list.component';
@@ -21,7 +20,6 @@ const routes: Routes = [
       {path: 'user-list', component: UserListComponent},
       {path: 'blog/:id', component: BlogComponent},
       {path: 'settings', component: SettingsComponent},
-      {path: 'photos', component: PhotosComponent},
       {path: 'report-list', component: ReportListComponent},
       {path: 'admin', component: AdminComponent},
       {path: 'czat', component: CzatComponent}

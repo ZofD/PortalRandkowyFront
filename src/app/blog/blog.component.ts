@@ -22,6 +22,7 @@ export class BlogComponent implements OnInit {
   public uzytkownicy: any;
   public post: any;
   public dodajPost = false;
+  public dodajProfilowe = false;
   public newZwiazek = {
     zgodaBlokada: 1,
     uzytkownikA: any,
@@ -63,7 +64,7 @@ export class BlogComponent implements OnInit {
         console.log('Błąd');
         console.log(error);
       });
-    this.getAllPosts();
+    this.getAllPostsByUser();
   }
 
   sendImage() {
@@ -75,13 +76,14 @@ export class BlogComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.getAllPosts();
+
     this.route.paramMap.pipe(take(1)).subscribe(params => {
       const id: number = +params.get('id');
 
       this.userService.getUser(id).subscribe((success) => {
         this.uzytkownicy = success;
         console.log(success);
+        this.getAllPostsByUser();
         this.ref.detectChanges();
       }, (error) => {
         console.log(error);
@@ -98,6 +100,25 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  public wysunProfilowe() {
+    if (this.dodajProfilowe === false) {
+      this.dodajProfilowe = true;
+    } else {
+      this.dodajProfilowe = false;
+    }
+  }
+
+  public getAllPostsByUser() {
+    console.log(this.uzytkownicy.id);
+    this.zdjeciaService.getAllImagesByUser(this.uzytkownicy.id).subscribe((result: object[]) => {
+      this.post = result;
+      console.log(result);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+
   public getAllPosts() {
     this.zdjeciaService.getAllImages().subscribe((result: object[]) => {
       this.post = result;
@@ -110,7 +131,7 @@ export class BlogComponent implements OnInit {
   public delete(post) {
     this.zdjeciaService.deleteImage(post).subscribe((success) => {
         console.log(success);
-        this.getAllPosts();
+        this.getAllPostsByUser();
       },
       (error) => {
         console.log(error);

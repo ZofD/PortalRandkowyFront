@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LogInComponent } from './log-in/log-in.component';
 import { BlogComponent } from './blog/blog.component';
 import { SettingsComponent } from './settings/settings.component';
-import { PhotosComponent } from './photos/photos.component';
+
 import { UserListComponent } from './user-list/user-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
@@ -25,7 +25,7 @@ import { CzatComponent } from './czat/czat.component';
     LogInComponent,
     BlogComponent,
     SettingsComponent,
-    PhotosComponent,
+
     UserListComponent,
     RegistrationComponent,
     ReportListComponent,

@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 fake-img bg-dark"></div>
+    <div *ngFor="let post of post" class="col-2" >
+      <div *ngIf="post.link !== '' && post.uzytkownik.id === uzytkownicy.id && post.status === 0" >  <img src="{{post.link}}"  class=" w-100 rounded float-left " alt="Problem z wczytywaniem obrazu"></div>
+
+    </div>
+
 
     <div *ngIf="uzytkownicy !== undefined" class="col-8">
       <small>Nick</small><h1>{{uzytkownicy.nick}}</h1>
@@ -14,26 +18,38 @@
         <button class="btn btn-success" (click)="wysun()">Dodaj post</button></div></div>
       <ng-template #innyNizZalogowany><button (click)="addZwiazek(uzytkownicy)" class="btn btn-danger">Dodaj do znajomych</button></ng-template>
       <div  *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id && dodajPost === true" class="form-group">         <small>Tytuł posta</small>
-        <input  type="text" [(ngModel)]="newZdjecia.tytul" class="form-control"/>
-        <small>Opis posta</small>
-        <input  type="text" [(ngModel)]="newZdjecia.opis" class="form-control"/>
-        <small>Wybierz zdjęcie</small>
-        <label class="image-upload-container ">  </label><br>
+      <input  type="text" [(ngModel)]="newZdjecia.tytul" class="form-control"/>
+      <small>Opis posta</small>
+      <input  type="text" [(ngModel)]="newZdjecia.opis" class="form-control"/><br>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" [(ngModel)]="newZdjecia.status" id="0" value="0" name="typ"  />
+          <label class="custom-control-label" for="0">Ustaw na profilowe</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="1" name="typ"  value="1" [(ngModel)]="newZdjecia.status" checked/>
+          <label class="custom-control-label" for="1">Zwykły post</label>
+        </div>
+        <br><br>
 
-          <input  type="file"  accept="image/*" (change)="onFileChanged($event)"><br>
+
+      <small >Wybierz zdjęcie</small><br>
+      <label class="image-upload-container ">  </label><br>
+
+      <input  type="file"  accept="image/*" (change)="onFileChanged($event)"><br><br>
 
 
-        <button class="btn btn-success" (click)="onUpload()" >Wyślij post</button>
-        <button class="btn btn-success" (click)="wysun()" >Anuluj</button>
-      </div>
+      <button class="btn btn-success" (click)="onUpload()" >Wyślij post</button><br><br>
+      <button class="btn btn-warning" (click)="wysun()" >Anuluj</button>
+    </div>
+
     </div>
 
     <header class="jumbotron w-100">
       <h1 class="text-center">Posty</h1>
     </header>
-    <div *ngFor="let post of post | postPipe : uzytkownicy" class="post jumbotron offset-2 col-8">
-    <div *ngIf="" >
-      <div class="w-100">
+    <div *ngFor="let post of post" class="post jumbotron offset-2 col-8">
+      <div *ngIf="post.link !== '' && post.uzytkownik.id === uzytkownicy.id" >
+        <div class="w-100">
         <h1 class="">{{post.tytul}}</h1>
         <h4 class="">{{post.dataDodania.slice(0,10)}}</h4>
       </div>
@@ -45,7 +61,7 @@
         <button *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id" (click)="delete(post)" class="btn btn-danger">Usuń post</button>
 
     </div></div>
-    <div *ngIf="post.status !== 0 && post.link === '' && post.uzytkownik.id === uzytkownicy.id" >
+    <div *ngIf="post.link === '' && post.uzytkownik.id === uzytkownicy.id" >
       <div class="w-100 fake-img bg-dark">
         <h1 class="">{{post.tytul}}</h1>
         <h4 class="">{{post.dataDodania.slice(0,10)}}</h4>
