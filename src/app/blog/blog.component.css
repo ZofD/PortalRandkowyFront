@@ -27,3 +27,8 @@ header {
     background-color: #F02222!important;
     color: whitesmoke;
 }
+
+.bg-img {
+    background-position: center;
+    background-size: cover;
+}
