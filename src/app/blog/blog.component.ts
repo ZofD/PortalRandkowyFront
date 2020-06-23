@@ -47,6 +47,7 @@ export class BlogComponent implements OnInit {
       uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     }
     this.newZdjecia.dataDodania = new Date();
+
     console.log(this.newZdjecia);
     this.zdjeciaService.addImage(this.newZdjecia).subscribe((success: Zdjecia) => {
         this.zdjecie = success;
