@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
     <div class="col-4 bg-img fake-img">
@@ -5,11 +6,13 @@
         <div *ngIf="post.link !== '' && post.uzytkownik.id === uzytkownicy.id && post.status === 0">
 
           <div style="background-image: url({{post.link}});" class="bg-img fake-img"></div>
+
         </div>
+
       </div>
     </div>
 
-    <div *ngIf="uzytkownicy !== undefined" class="col-8">
+    <div *ngIf="uzytkownicy !== undefined && uzytkownicy.uprawnienia !== 2" class="col-8">
       <small>Nick</small>
       <h1>{{uzytkownicy.nick}}</h1>
       <small>Miejscowość</small>
@@ -26,7 +29,7 @@
       <p class="w-100 jumbotron">{{uzytkownicy.opis}}</p>
       <div *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id">
         <div *ngIf="dodajPost === false">
-          <button class="btn btn-success" (click)="wysun()">Dodaj post</button>
+          <button class="btn btn-success" (click)="wysunPost()">Dodaj post</button>
 
           <div *ngFor="let post of post">
             <div *ngIf="post.link !== '' && post.uzytkownik.id === uzytkownicy.id && post.status === 0">
@@ -38,14 +41,26 @@
           </div>
         </div>
       </div>
-      <div *ngIf="czyZwiazek === null && uzytkownicy.id !== zalogowanyUzytkownik.id">
+      <div *ngIf="czyZwiazek === 0 && uzytkownicy.id !== zalogowanyUzytkownik.id">
 
         <button (click)="addZwiazek(uzytkownicy)" class="btn btn-danger">Dodaj do znajomych</button>
       </div>
       <div *ngIf="czyZwiazek === 2 && uzytkownicy.id !== zalogowanyUzytkownik.id">
 
-        <button (click)="zablokowanyZwiazek()" class="btn btn-danger">Zablokuj użytkownika</button>
+      <button (click)="zablokowanyZwiazek()" class="btn btn-danger">Zablokuj użytkownika</button>
+        <small> Ta operacja jest nieodwracalna!</small>
+    </div>
+      <div *ngIf="czyZwiazek === 3 && uzytkownicy.id !== zalogowanyUzytkownik.id">
+
+        <div class="alert alert-danger">
+          <strong>UWAGA!</strong> Znajomośc pomiędzy Tobą, a tym użytkownikiem została zablokowana przez jedną ze stron!
+        </div>
       </div>
+
+        <div *ngIf="uzytkownicy.id !== zalogowanyUzytkownik.id && uzytkownicy.uprawnienia !== 2">
+          <br>
+          <button class="btn btn-dark" (click)="wysunZgloszenie()">Zgłoś użytkownika do administratora</button>
+        </div>
       <div *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id && dodajPost === true" class="form-group">
         <small>Tytuł posta</small>
         <input type="text" [(ngModel)]="newZdjecia.tytul" class="form-control"/>
@@ -71,15 +86,32 @@
           <div style=" padding: 0px 6px 6px 10px;"></div>
           <button class="btn btn-success" (click)="onUpload()">Wyślij post</button>
           <div style=" padding: 0px 6px 6px 10px;"></div>
-          <button class="btn btn-warning" (click)="wysun()">Anuluj</button>
+          <button class="btn btn-warning" (click)="wysunPost()">Anuluj</button>
         </div>
       </div>
       <div *ngIf="error"><br><br>Aby dodać zdjęcie profilowe musisz wczytać zdjęcie!</div>
+
+    <div *ngIf="uzytkownicy.id !== zalogowanyUzytkownik.id && dodajZgloszenie === true && uzytkownicy.uprawnienia !== 2" class="form-group"><br>
+      <small>Treść zgłoszenia</small>
+      <input type="text" [(ngModel)]="newZgloszenie.tresc" class="form-control"/>
+          <br>
+      <div class="row">
+        <div style=" padding: 0px 6px 6px 10px;"></div>
+        <button class="btn btn-danger" (click)="sendZgloszenie()">Wyślij zgłoszenie</button>
+        <div style=" padding: 0px 6px 6px 10px;"></div>
+        <button class="btn btn-warning" (click)="wysunZgloszenie()">Anuluj</button>
+      </div>
+
+    </div>
     </div>
 
-    <header class="jumbotron w-100">
+    <header *ngIf="uzytkownicy !== undefined && uzytkownicy.uprawnienia !== 2" class="jumbotron w-100">
       <h1 class="text-center">Posty</h1>
-    </header>
+    </header> <div *ngIf="uzytkownicy !== undefined && uzytkownicy.uprawnienia === 2" class="alert alert-danger ">
+    <strong>UWAGA!</strong><br> Użytkownik został zablokowany przez administratora!
+
+  </div>
+
     <div *ngFor="let post of post" class="post jumbotron offset-2 col-8">
       <div *ngIf="post.link !== '' && post.uzytkownik.id === uzytkownicy.id">
         <div class="w-100">
@@ -90,7 +122,7 @@
         <div class="w-100">
           <div class="opis">{{post.opis}}</div>
           <button *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id"
-                  (click)="delete(post)" class="btn btn-danger">Usuń post
+                  (click)="delete(post)" class="btn btn-dark">Usuń post
           </button>
         </div>
       </div>
@@ -102,8 +134,9 @@
         <div class="w-100">
           <div class="opis">{{post.opis}}</div>
           <button *ngIf="uzytkownicy.id === zalogowanyUzytkownik.id"
-                  (click)="delete(post)" class="btn btn-danger">Usuń post
+                  (click)="delete(post)" class="btn btn-dark">Usuń post
           </button>
+
         </div>
       </div>
     </div>
