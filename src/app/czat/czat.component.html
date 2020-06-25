@@ -3,21 +3,21 @@
         <div class="col-4">
             <ul class="list-group">
                 <li class="list-group-item active"><h4 class="text-center col-12">Twoi znajomi</h4></li>
-                <li class="list-group-item active">
-                <form class="form-inline col-12">
-                    <div class="col">
-                    <input [(ngModel)]="wzorzec" name="search"
-                        class="form-control w-100" type="search" placeholder="Wyszukaj" aria-label="Search">
-                    </div>
-                </form>
-                </li>
-                <div *ngIf="wzorzec.length > 0">
-                    <li class="list-group-item active"><h4 class="text-center col-12">Wyniki wyszukiwania</h4></li>
-                </div>
+<!--                <li class="list-group-item active">-->
+<!--                <form class="form-inline col-12">-->
+<!--                    <div class="col">-->
+<!--                    <input [(ngModel)]="wzorzec" name="search" value="''"-->
+<!--                        class="form-control w-100" type="search" placeholder="Wyszukaj" aria-label="Search">-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--                </li>-->
+<!--                <div *ngIf="wzorzec.length > 0">-->
+<!--                    <li class="list-group-item active"><h4 class="text-center col-12">Wyniki wyszukiwania</h4></li>-->
+<!--                </div>-->
                 <li class="list-group-item active">
                     <div style="margin-top: 6.5px; padding-left: 70px" class="col-3">Nick</div>
                 </li>
-                <li style=" list-style: none" *ngFor="let uzytkownik of uzytkownicy | myPipe : wzorzec" >
+               <li style=" list-style: none" *ngFor="let uzytkownik of uzytkownicy"> <!-- | myPipe : wzorzec" >-->
                   <div class="list-group-item list-group-item-action" (click)="viewConversation(uzytkownik)">
                     <div class="col-3 nick" >
                       <div *ngFor="let profilowe of profilowe">

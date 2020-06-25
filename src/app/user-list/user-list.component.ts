@@ -14,6 +14,7 @@ export class UserListComponent implements OnInit {
   public sugestie: any[] = [];
   public uzytkownicy: any[] = [];
   public wzorzec = '';
+  public czyZwiazek = 10;
   public newZwiazek = {
     zgodaBlokada: 1,
     uzytkownikA: any,
@@ -33,13 +34,25 @@ export class UserListComponent implements OnInit {
     this.getAllSuggestions();
     this.getAllProfileImage();
     this.getAllUser();
-
   }
 
   public getAllSuggestions() {
     this.userService.getSuggestions(this.zalogowanyUzytkownik.id).subscribe((result: any[]) => {
       this.sugestie = result;
       console.log(result);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  public czyZnajomi(id) {
+    this.zwiazekService.czyZwiazek(this.zalogowanyUzytkownik.id, id).subscribe((result: any) => {
+      if (result === null) {
+        this.czyZwiazek = 0;
+      } else {
+        this.czyZwiazek = result.zgodaBlokada;
+      }
+      console.log(this.czyZwiazek);
     }, (error) => {
       console.log(error);
     });
