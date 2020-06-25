@@ -3,6 +3,7 @@ import {FormBuilder, NgModel} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {any} from 'codelyzer/util/function';
 import {ZwiazekService} from '../services/zwiazek.service';
+import {ZdjeciaService} from '../services/zdjecia.service';
 
 @Component({
   selector: 'app-user-list',
@@ -18,19 +19,21 @@ export class UserListComponent implements OnInit {
     uzytkownikA: any,
     uzytkownikB: any
   };
-
+  public profilowe: any[] = [];
   public zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private zwiazekService: ZwiazekService,
+              private zdjeciaService: ZdjeciaService,
               private ref: ChangeDetectorRef) {
   }
 
   public ngOnInit() {
     this.getAllSuggestions();
+    this.getAllProfileImage();
     this.getAllUser();
-    this.ref.detectChanges();
+
   }
 
   public getAllSuggestions() {
@@ -38,6 +41,16 @@ export class UserListComponent implements OnInit {
       this.sugestie = result;
       console.log(result);
     }, (error) => {
+      console.log(error);
+    });
+  }
+
+  public getAllProfileImage() {
+    this.zdjeciaService.getAllProfileImage().subscribe((result: any[]) => {
+      this.profilowe = result;
+      console.log(result);
+    }, (error) => {
+      console.log(error);
     });
   }
 
@@ -53,7 +66,7 @@ export class UserListComponent implements OnInit {
   public addZwiazek(zapraszany) {
     this.newZwiazek.uzytkownikA = this.zalogowanyUzytkownik;
     this.newZwiazek.uzytkownikB = zapraszany;
-    console.log(this.newZwiazek)
+    console.log(this.newZwiazek);
     this.zwiazekService.addZwiazek(this.newZwiazek).subscribe((result: any[]) => {
       this.uzytkownicy = result;
       console.log(result);

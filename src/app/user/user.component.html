@@ -5,8 +5,11 @@
 </div>
 <nav *ngIf="isCustomer()"
     class="navbar navbar-expand-lg navbar-dark">
-  <a routerLink="user-list" class="navbar-brand">
-    <div class="portrait"></div>
+  <a routerLink="blog/{{zalogowanyUzytkownik.id}}" class="navbar-brand">
+    <div *ngIf="profilowe === undefined || profilowe === null;  else jestProfilowe"><div class="portrait" ></div></div>
+    <ng-template #jestProfilowe>    <div class="portrait" style="background-image: url({{profilowe.link}}); background-color: transparent"></div></ng-template>
+
+
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
@@ -14,7 +17,10 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a routerLink="blog/{{zalogowanyUzytkownik.id}}" class="nav-link">Blog</a>
+      <a routerLink="blog/{{zalogowanyUzytkownik.id}}" class="nav-link">Blog</a>
+    </li>
+      <li class="nav-item">
+        <a routerLink="user-list" class="nav-link">Znajdź miłość</a>
       </li>
       <li class="nav-item">
         <a routerLink="czat" class="nav-link">Czat i znajomi</a>

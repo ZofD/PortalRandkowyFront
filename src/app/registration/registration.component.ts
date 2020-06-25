@@ -86,7 +86,7 @@ export class RegistrationComponent implements OnInit {
           localStorage.setItem('zalogowany', JSON.stringify(true));
           this.userService.getUser(success.id).subscribe((success2) => {
             localStorage.setItem('data', JSON.stringify(success2));
-            this.router.navigateByUrl('user');
+            this.router.navigateByUrl('user/user-list');
           }, (error) => {
             this.errorRejestracja = true;
             console.log('Error');
