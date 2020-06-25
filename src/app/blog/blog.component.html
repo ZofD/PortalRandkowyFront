@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="(czyZwiazek === 0 || czyZwiazek === 1) && uzytkownicy.id !== zalogowanyUzytkownik.id">
+      <div *ngIf="((czyZwiazek === 0 && uzytkownicy.id !== zalogowanyUzytkownik.id) || (czyZwiazek === 1 && zwiazek.uzytkownikA.id !== zalogowanyUzytkownik.id ))">
 
         <button (click)="addZwiazek(uzytkownicy)" class="btn btn-danger">Dodaj do znajomych</button>
       </div>

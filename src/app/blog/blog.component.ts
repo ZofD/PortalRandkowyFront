@@ -125,8 +125,9 @@ export class BlogComponent implements OnInit {
         this.czyZwiazek = 0;
       } else {
         this.czyZwiazek = result.zgodaBlokada;
+        this.zwiazek = result;
       }
-      this.zwiazek = result;
+
       console.log(this.czyZwiazek);
     }, (error) => {
       console.log(error);
