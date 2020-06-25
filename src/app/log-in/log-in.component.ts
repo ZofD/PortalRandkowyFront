@@ -18,13 +18,20 @@ export class LogInComponent implements OnInit {
   public errorRejestracja = false;
   public error = false;
   public blokada = false;
-  public zalogowany = JSON.parse(localStorage.getItem('zalogowany'));
-  public disabled: boolean[] = [];
+  public zalogowany;
+  public zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
 
   constructor(private formBuilder: FormBuilder,
+              private router: Router,
               private userService: UserService,
-              private router: Router, private ref: ChangeDetectorRef) {
-
+              private cdRef: ChangeDetectorRef) {
+    this.zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
+    this.userService.isLoggedIn.subscribe(res => {
+        this.zalogowany = res;
+        this.nieWpusc();
+        this.zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
+      }
+    );
     this.uzytkownikCzyIstnieje = this.formBuilder.group({
       mail: '',
       haslo: '',
@@ -33,6 +40,13 @@ export class LogInComponent implements OnInit {
 
   public ngOnInit() {
     this.getAllUser();
+  }
+
+  nieWpusc() {
+
+    if (this.zalogowany === true) {
+      this.router.navigateByUrl('/user/user-list');
+    }
   }
 
 
@@ -54,26 +68,25 @@ export class LogInComponent implements OnInit {
 
 
   public zaloguj(data: Login): void {
-    if (data.haslo.length === 0 || data.mail.length === 0){
+    if (data.haslo.length === 0 || data.mail.length === 0) {
       this.error = true;
       this.blokada = false;
     } else {
       this.error = false;
       this.blokada = false;
       this.userService.existUser(data).subscribe((success: any) => {
-        if (success) {
+        console.log(success);
+        if (success !== null) {
           this.zalogowany = true;
           localStorage.setItem('zalogowany', JSON.stringify(true));
           localStorage.setItem('data', JSON.stringify(success));
           this.userService.isLoggedIn.next(true);
           if (success.uprawnienia === 1) {
             this.router.navigateByUrl('user/admin');
-          }
-          else if (success.uprawnienia === 2) {
+          } else if (success.uprawnienia === 2) {
             this.zalogowany = false;
             this.blokada = true;
-          }
-          else {
+          } else {
             this.router.navigateByUrl('user/user-list');
           }
         } else {
@@ -82,7 +95,7 @@ export class LogInComponent implements OnInit {
           console.log(this.error);
           this.userService.isLoggedIn.next(false);
           this.zalogowany = false;
-          console.error('error');
+          // console.error('error');
         }
       }, (error) => {
         this.error = true;

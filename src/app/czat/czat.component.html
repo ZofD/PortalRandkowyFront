@@ -15,22 +15,52 @@
                     <li class="list-group-item active"><h4 class="text-center col-12">Wyniki wyszukiwania</h4></li>
                 </div>
                 <li class="list-group-item active">
-                    <div class="col-3">Nick</div>
+                    <div style="margin-top: 6.5px; padding-left: 70px" class="col-3">Nick</div>
                 </li>
-                <li *ngFor="let uzytkownik of uzytkownicy | myPipe : wzorzec"
-                        class="list-group-item list-group-item-action">
-                    <div class="col-3 nick"><div class="portrait"></div><div style="margin-top: 6.5px;">{{uzytkownik.nick}}</div></div>
+                <li style=" list-style: none" *ngFor="let uzytkownik of uzytkownicy" >
+                  <div class="list-group-item list-group-item-action" (click)="viewConversation(uzytkownik)">
+                    <div class="col-3 nick" >
+                      <div *ngFor="let profilowe of profilowe">
+                        <div *ngIf="profilowe.uzytkownik.id === uzytkownik.id">
+                          <div class="portrait" style="background-image: url({{profilowe.link}}); background-color: transparent"></div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 6.5px; padding-left: 70px">  {{uzytkownik.nick}}</div>
+                    </div></div>
                 </li>
             </ul>
         </div>
-        <div class="col-8">
+        <div class="col-8 height-czat" *ngIf="this.odbiorca !== null">
+          <ul class="list-group">
+            <li class="list-group-item active">
+              <h4 class="text-center col-12">Czat z uzytkownikiem
+                <a style="color: white;  text-decoration: underline;" [routerLink]="['/user/blog/' + odbiorca.id]" *ngIf="odbiorca !== null">{{odbiorca.nick}}</a>
+              </h4>
+            </li>
+          </ul>
+          <div class="col-8 height-wiadomosci scroll col-12" id="scrollCzat">
             <ul class="list-group">
-                <li class="list-group-item active"><h4 class="text-center col-12">Czat z uzytkownikiem []</h4></li>
-                <li *ngFor="let wiadomosc of wiadomosci" [ngClass]="{'myMessage bg-danger': isMyMessage(wiadomosc.user)}"
-                        class="list-group-item col-12">
-                    {{wiadomosc.mesage}}
-                </li>
+              <li *ngFor="let wiadomosc of wiadomosci" [ngClass]="{'myMessage bg-danger': wiadomosc.user}"
+                        class="list-group-item col-12 d-block">
+                <p>
+                  {{wiadomosc.mesage}}
+                </p>
+                <small style="font-size: .7em">
+                  {{wiadomosc.dataNadeslania}}
+                </small>
+              </li>
+            </ul>
+          </div>
+            <ul class="list-group" *ngIf="this.odbiorca !== null" >
+              <li class="list-group-item active clearfix">
+                <input type="text" class="col-11 bg-white " [(ngModel)]="tresc" (keydown.enter)="addWiadomosc()" />
+                <div style=" padding: 0px 6px 6px 10px;"></div>  <button class="btn btn-success" (click)="addWiadomosc()">Wyślij</button>
+
+              </li>
             </ul>
         </div>
     </div>
 </div>
+<script>
+  $('#scrollCzat').scrollTop(1000);
+</script>

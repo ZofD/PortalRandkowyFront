@@ -22,6 +22,13 @@ export class ZdjeciaService {
     return this.http.get(this.host + 'api/zdjecia/uzytkownik/' + id);
   }
 
+  public getProfileImageByUser(id) {
+    return this.http.get(this.host + 'api/zdjecia/profil/uzytkownik/' + id);
+  }
+  public getAllProfileImage() {
+    return this.http.get(this.host + 'api/zdjecia/profil');
+  }
+
   public deleteImage(body) {
     return this.http.request('delete', this.host + 'api/zdjecia', {body});
   }

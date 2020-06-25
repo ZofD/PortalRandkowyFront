@@ -8,6 +8,7 @@ import {any} from 'codelyzer/util/function';
 import {ZwiazekService} from '../services/zwiazek.service';
 import {ZdjeciaService} from '../services/zdjecia.service';
 import {Zdjecia} from '../interface/zdjecia';
+import {ZgloszenieService} from '../services/zgloszenie.service';
 
 @Component({
   selector: 'app-blog',
@@ -21,15 +22,22 @@ export class BlogComponent implements OnInit {
   newZdjecia = {tytul: '', link: '', status: '1', opis: '', dataDodania: null, uzytkownik: this.zalogowanyUzytkownik};
   public uzytkownicy: any;
   public post: any;
+  public profilowe: any;
   public zwiazek: any;
   public dodajPost = false;
   public error = false;
-  public czyZwiazek = null;
-  public dodajProfilowe = false;
+  public czyZwiazek = 10;
+  public dodajZgloszenie = false;
   public newZwiazek = {
     zgodaBlokada: 1,
     uzytkownikA: any,
     uzytkownikB: any
+  };
+  public newZgloszenie = {
+    uzytkownikZglaszajacy: this.zalogowanyUzytkownik,
+    uzytkownikZglaszany: any,
+    tresc: '',
+    dataZgloszenia: null
   };
 
   constructor(
@@ -38,8 +46,28 @@ export class BlogComponent implements OnInit {
     private ref: ChangeDetectorRef,
     private zwiazekService: ZwiazekService,
     private zdjeciaService: ZdjeciaService,
+    private zgloszenieService: ZgloszenieService,
     private location: Location
   ) {
+  }
+
+  public ngOnInit(): void {
+
+    this.route.paramMap.pipe(take(1)).subscribe(params => {
+      const id: number = +params.get('id');
+
+      this.userService.getUser(id).subscribe((success) => {
+        this.uzytkownicy = success;
+        console.log(success);
+        this.getAllPostsByUser();
+        this.czyZnajomi();
+        this.getProfileImageByUser();
+        this.ref.detectChanges();
+      }, (error) => {
+        console.log(error);
+      });
+    });
+
   }
 
   public onUpload() {
@@ -92,35 +120,23 @@ export class BlogComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
-  public ngOnInit(): void {
-
-    this.route.paramMap.pipe(take(1)).subscribe(params => {
-      const id: number = +params.get('id');
-
-      this.userService.getUser(id).subscribe((success) => {
-        this.uzytkownicy = success;
-        console.log(success);
-        this.getAllPostsByUser();
-        this.czyZnajomi();
-        this.ref.detectChanges();
-      }, (error) => {
-        console.log(error);
-      });
-    });
-
-  }
 
   public czyZnajomi() {
     this.zwiazekService.czyZwiazek(this.zalogowanyUzytkownik.id, this.uzytkownicy.id).subscribe((result: any) => {
-      this.czyZwiazek = result.zgodaBlokada;
-      this.zwiazek = result;
-      console.log( this.czyZwiazek);
+      if (result === null) {
+        this.czyZwiazek = 0;
+      } else {
+        this.czyZwiazek = result.zgodaBlokada;
+        this.zwiazek = result;
+      }
+
+      console.log(this.czyZwiazek);
     }, (error) => {
       console.log(error);
     });
   }
 
-  public wysun() {
+  public wysunPost() {
     if (this.dodajPost === false) {
       this.dodajPost = true;
     } else {
@@ -128,11 +144,11 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  public wysunProfilowe() {
-    if (this.dodajProfilowe === false) {
-      this.dodajProfilowe = true;
+  public wysunZgloszenie() {
+    if (this.dodajZgloszenie === false) {
+      this.dodajZgloszenie = true;
     } else {
-      this.dodajProfilowe = false;
+      this.dodajZgloszenie = false;
     }
   }
 
@@ -146,9 +162,19 @@ export class BlogComponent implements OnInit {
     });
   }
 
+  public getProfileImageByUser() {
+    this.zdjeciaService.getProfileImageByUser(this.uzytkownicy.id).subscribe((result) => {
+      this.profilowe = result;
+      console.log(result);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
   public deleteProfileImage() {
     this.zdjeciaService.deleteProfileImage(this.zalogowanyUzytkownik.id).subscribe((result: object[]) => {
       console.log(result);
+      this.getProfileImageByUser();
       this.getAllPostsByUser();
     }, (error) => {
       console.log(error);
@@ -169,6 +195,7 @@ export class BlogComponent implements OnInit {
     this.zdjeciaService.deleteImage(post).subscribe((success) => {
         console.log(success);
         this.getAllPostsByUser();
+        this.getProfileImageByUser();
       },
       (error) => {
         console.log(error);
@@ -181,6 +208,18 @@ export class BlogComponent implements OnInit {
     console.log(this.newZwiazek);
     this.zwiazekService.addZwiazek(this.newZwiazek).subscribe((result: any[]) => {
       console.log(result);
+      this.czyZnajomi();
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  public sendZgloszenie() {
+    this.dodajZgloszenie = false;
+    this.newZgloszenie.dataZgloszenia = new Date();
+    this.newZgloszenie.uzytkownikZglaszany = this.uzytkownicy;
+    this.zgloszenieService.sendZgloszenie(this.newZgloszenie).subscribe((result: any[]) => {
+      console.log(result);
     }, (error) => {
       console.log(error);
     });
@@ -188,8 +227,9 @@ export class BlogComponent implements OnInit {
 
   public zablokowanyZwiazek() {
     this.zwiazek.zgodaBlokada = 3;
-    this.zwiazekService.banZwiazek(this.zwiazek).subscribe((result: any[]) => {
+    this.zwiazekService.banZwiazek(this.zwiazek).subscribe((result: any) => {
       console.log(result);
+      this.czyZnajomi();
     }, (error) => {
       console.log(error);
     });

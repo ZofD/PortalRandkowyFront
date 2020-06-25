@@ -12,6 +12,10 @@ export class ZwiazekService {
   constructor(private http: HttpClient) {
   }
 
+  public getZwiazkiUzytkownik(idUser){
+    return this.http.get(this.host + 'api/zwiazek/uzytkownik/' + idUser);
+  }
+
   public addZwiazek(body): Observable<any> {
     return this.http.post(this.host + 'api/zwiazek', body);
   }
