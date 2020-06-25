@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PostPipe } from '../user-list/user-list.pipe';
 import {Zwiazek} from '../interface/zwiazek';
 import {ZwiazekService} from '../services/zwiazek.service';
-import {User} from '../user/user';
 import {Subscription} from 'rxjs';
 import {WiadomosciService} from '../services/wiadomosci.service';
 import {Wiadomosci} from '../interface/wiadomosci';
@@ -23,24 +22,7 @@ export class CzatComponent implements OnInit {
   uzytkownicy: Uzytkownik[] = [];
   konwersacja: Wiadomosci[] = [];
   tresc = '';
-  wiadomosc: Wiadomosc;
-  wiadomosci: any[] = [
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true},
-    {mesage: 'nie moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: false},
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true},
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true},
-    {mesage: 'nie moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: false},
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true},
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true},
-    {mesage: 'nie moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: false},
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true},
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true},
-    {mesage: 'nie moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: false},
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true},
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true},
-    {mesage: 'nie moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: false},
-    {mesage: 'moja wiadomosc', dataNadeslania: this.datePipe.transform(new Date(), 'dd.MM.yyyy HH:mm'), user: true}
-  ];
+  wiadomosci: Wiadomosc[] = [];
   wzorzec = '';
   newWiadomosc = {nadawca: this.zalogowanyUzytkownik, odbiorca: null, dataNadeslania: null, tresc: ''};
 
@@ -90,9 +72,9 @@ export class CzatComponent implements OnInit {
         if (this.odbiorca === null){
         }
         if (wiadomosc.nadawca.id === this.zalogowanyUzytkownik.id){
-          this.wiadomosci.push({mesage: wiadomosc.tresc, dataNadeslania: wiadomosc.dataNadeslania, user: true});
+          this.wiadomosci.push({mesage: wiadomosc.tresc, dataNadeslania: this.datePipe.transform(wiadomosc.dataNadeslania, 'dd.MM.yyyy HH:mm'), user: true});
         }else{
-          this.wiadomosci.push({mesage: wiadomosc.tresc, dataNadeslania: wiadomosc.dataNadeslania, user: false});
+          this.wiadomosci.push({mesage: wiadomosc.tresc, dataNadeslania: this.datePipe.transform(wiadomosc.dataNadeslania, 'dd.MM.yyyy HH:mm'), user: false});
         }
       }
     }, (error) => {
@@ -105,7 +87,6 @@ export class CzatComponent implements OnInit {
     this.tresc = '';
     this.newWiadomosc.dataNadeslania = new Date();
     this.newWiadomosc.odbiorca = this.odbiorca;
-    console.log(this.newWiadomosc);
     this.wiadomosciService.addWiadomosci(this.newWiadomosc).subscribe(succes => {
       this.viewConversation(this.newWiadomosc.odbiorca);
     }, (error => {
@@ -121,6 +102,6 @@ export class CzatComponent implements OnInit {
 
 interface Wiadomosc {
   mesage: string;
-  dataNadeslania: DatePipe;
+  dataNadeslania: string;
   user: boolean;
 }
