@@ -41,11 +41,19 @@
           </div>
         </div>
       </div>
+      <div *ngIf="(czyZwiazek === 1 && zwiazek.uzytkownikA.id !== zalogowanyUzytkownik.id )" class="alert alert-secondary">
+        Ta osoba zaprosiła Cię do znajomych. Dodaj tego użytkownika do znajomych, aby móc z nim porozmawiać!
+      </div>
       <div *ngIf="((czyZwiazek === 0 && uzytkownicy.id !== zalogowanyUzytkownik.id) || (czyZwiazek === 1 && zwiazek.uzytkownikA.id !== zalogowanyUzytkownik.id ))">
 
         <button (click)="addZwiazek(uzytkownicy)" class="btn btn-danger">Dodaj do znajomych</button>
       </div>
       <div *ngIf="czyZwiazek === 2 && uzytkownicy.id !== zalogowanyUzytkownik.id">
+
+          <div class="alert alert-secondary">
+            <strong>Jesteście znajomymi</strong>, możecie rozmawiać ze sobą w zakładce <strong>Czat i znajomi</strong>.
+          </div>
+
 
       <button (click)="zablokowanyZwiazek()" class="btn btn-danger">Zablokuj użytkownika</button>
         <small> Ta operacja jest nieodwracalna!</small>
