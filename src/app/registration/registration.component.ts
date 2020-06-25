@@ -81,16 +81,7 @@ export class RegistrationComponent implements OnInit {
       this.userService.addUser(this.newUzytkownik).subscribe((success) => {
         if (success) {
           this.zalogowany = true;
-          this.userService.isLoggedIn.next(true);
-
-          localStorage.setItem('zalogowany', JSON.stringify(true));
-          this.userService.getUser(success.id).subscribe((success2) => {
-            localStorage.setItem('data', JSON.stringify(success2));
-            this.router.navigateByUrl('user/user-list');
-          }, (error) => {
-            this.errorRejestracja = true;
-            console.log('Error');
-          });
+          this.router.navigateByUrl('');
         } else {
           console.log('błąd');
           this.errorRejestracja = true;
@@ -100,7 +91,7 @@ export class RegistrationComponent implements OnInit {
         }
       }, (error) => {
         this.errorRejestracja = true;
-        console.log('Error');
+        console.log(error);
       });
     } else {
       this.errorRejestracja = true;
