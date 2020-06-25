@@ -34,7 +34,7 @@ export class UserService {
   }
 
   public existUser(data: Login) {
-    return this.http.get(this.host + 'api/uzytkownik/nick/' + data.haslo + '/password/' + data.mail);
+    return this.http.get(this.host + 'api/uzytkownik/mail/' + data.mail + '/password/' + data.haslo);
   }
 
 

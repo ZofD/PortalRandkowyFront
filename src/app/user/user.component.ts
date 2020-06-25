@@ -17,19 +17,28 @@ export class UserComponent implements OnInit {
     this.zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
     this.userService.isLoggedIn.subscribe(res => {
         this.zalogowany = res;
-        this.zalogowanyUzytkownik =  JSON.parse(localStorage.getItem('data'));
+        this.nieWpusc();
+        this.zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
       }
     );
+  }
+
+  nieWpusc() {
+
+    if (this.zalogowany !== true) {
+      this.router.navigateByUrl('');
+    }
   }
 
   ngOnInit(): void {
     this.zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
     this.userService.isLoggedIn.subscribe(res => {
         this.zalogowany = res;
-        this.zalogowanyUzytkownik =  JSON.parse(localStorage.getItem('data'));
+        this.zalogowanyUzytkownik = JSON.parse(localStorage.getItem('data'));
       }
     );
   }
+
   public isCustomer(): boolean {
     if (this.zalogowanyUzytkownik.uprawnienia === 0) {
       return true;
@@ -51,7 +60,6 @@ export class UserComponent implements OnInit {
     localStorage.removeItem('data');
     this.userService.isLoggedIn.next(false);
   }
-
 
 
 }

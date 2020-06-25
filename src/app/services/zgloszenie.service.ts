@@ -18,4 +18,7 @@ export class ZgloszenieService {
     return this.http.request('delete', this.host + 'api/zgloszenie', {body});
   }
 
+  public sendZgloszenie(body): Observable<any> {
+    return this.http.post(this.host + 'api/zgloszenie', body);
+  }
 }

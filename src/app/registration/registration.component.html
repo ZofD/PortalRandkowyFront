@@ -3,44 +3,43 @@
     <header class="jumbotron col">
       <h1>Rejestracja</h1>
       <small>dokończ rejestrację</small>
-    </header>  </div>
+    </header>  
+  </div>
 </div>
-<div class="container">
+<div class="container margin">
   <div class="row">
-    <div class="col-6">
+    <div class="offset-4 col-4">
       <div class="form-group">
-        <small>Nick</small>
-        <input  type="text" [(ngModel)]="newUzytkownik.nick" class="form-control"/>
-        <small>E-mail</small>
-        <input type="hidden"  [(ngModel)]="newUser.mail" class="form-control" disabled><br>
-        {{newUser.mail}}<br>
-        <small>Hasło</small>
-        <input type="password" [(ngModel)]="newUzytkownik.haslo" class="form-control"/>
-        <small>Płeć</small>
-        <input type="hidden" [(ngModel)]="newUser.plec"
-              class="form-control" disabled/>
-        <div *ngIf="newUser.plec === 'true'">Mężczyzna</div>
-        <div *ngIf="newUser.plec === 'false'">Kobieta</div>
-        <small>Miejscowość</small>
-        <input type="text"  [(ngModel)]="newUzytkownik.miejscowosc" class="form-control"/>
-        <small>Opis</small>
-        <input type="text"  [(ngModel)]="newUzytkownik.opis" class="form-control"/><br>
-        <small>Wybierz pierwsze zainteresowanie</small><br>
+        <small class="form-text text-muted">Nick</small>
+        <input  type="text" [(ngModel)]="newUzytkownik.nick" class=""/>
+        <small class="form-text text-muted">E-mail</small>
+        <input type="hidden"  [(ngModel)]="newUser.mail" class="" disabled>
+        <input class="form-control" value="{{newUser.mail}}" disabled>
+        <small class="form-text text-muted">Hasło</small>
+        <input type="password" [(ngModel)]="newUzytkownik.haslo" class=""/>
+        <small class="form-text text-muted">Płeć</small>
+        <input type="hidden" [(ngModel)]="newUser.plec" class="" disabled/>
+        <input class="form-control" *ngIf="newUser.plec === 'true'" value="Mężczyzna" disabled>
+        <input class="form-control" *ngIf="newUser.plec === 'false'" value="Kobieta" disabled>
+        <small class="form-text text-muted">Miejscowość</small>
+        <input type="text"  [(ngModel)]="newUzytkownik.miejscowosc" class=""/>
+        <small class="form-text text-muted">Opis</small>
+        <input type="text"  [(ngModel)]="newUzytkownik.opis" class=""/><br>
+        <small class="form-text text-muted">Wybierz pierwsze zainteresowanie</small><br>
         <form [formGroup]="podkategoriaForm">
-          <select formControlName="podkategoriaControl">
-
+          <select class="custom-select" formControlName="podkategoriaControl">
             <option [value]="podkategoria.id"  *ngFor="let podkategoria of podkategorie">{{podkategoria.nazwa}}</option>
           </select><br><br>
         </form>
-        <small>Wybierz drugie zainteresowanie</small><br>
+        <small class="form-text text-muted">Wybierz drugie zainteresowanie</small><br>
         <form [formGroup]="podkategoriaForm2">
-          <select formControlName="podkategoriaControl2">
+          <select class="custom-select" formControlName="podkategoriaControl2">
             <option [value]="podkategoria2.id" *ngFor="let podkategoria2 of podkategorie2">{{podkategoria2.nazwa}}</option>
           </select><br><br>
         </form>
-        <small>Wybierz trzecie zainteresowanie</small><br>
+        <small class="form-text text-muted">Wybierz trzecie zainteresowanie</small><br>
         <form [formGroup]="podkategoriaForm3">
-          <select formControlName="podkategoriaControl3">
+          <select class="custom-select" formControlName="podkategoriaControl3">
             <option [value]="podkategoria3.id" *ngFor="let podkategoria3 of podkategorie3">{{podkategoria3.nazwa}}</option>
           </select>
         </form>
@@ -50,3 +49,4 @@
       </div>
     </div>
   </div>
+</div>
