@@ -50,7 +50,7 @@
         <div style="margin-top: 6.5px; padding-left: 70px"><a routerLink="../blog/{{uzytkownik.uzytkownik.id}}" class="nav-link">{{uzytkownik.uzytkownik.nick}}</a></div></div>
           <div class="col-5 opis">{{uzytkownik.uzytkownik.opis}}</div>
           <div class="col-2 punkty-dopasowania">{{uzytkownik.points}}</div>
-      <div *ngIf="uzytkownik.id !== zalogowanyUzytkownik.id && uzytkownik.uprawnienia !== 2"  class="col-2"><button (click)="addZwiazek(uzytkownik)" class="w-100 btn btn-danger">Dodaj</button></div>
+      <div *ngIf="uzytkownik.id !== zalogowanyUzytkownik.id && uzytkownik.uprawnienia !== 2"  class="col-2"><button (click)="addZwiazek(uzytkownik.uzytkownik)" class="w-100 btn btn-danger">Dodaj</button></div>
       <div *ngIf="uzytkownik.uprawnienia === 2"   style="color: white;"  class="col-2 bg-danger">Użytkownik zablokowany!</div>
       </li>
 
