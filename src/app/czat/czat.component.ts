@@ -82,6 +82,11 @@ export class CzatComponent implements OnInit {
         break;
       }
     }
+    if (this.odbiorca.uprawnienia === 2){
+      this.ban = false;
+    } else {
+      this.ban = true;
+    }
   }
 
   view(id) {
