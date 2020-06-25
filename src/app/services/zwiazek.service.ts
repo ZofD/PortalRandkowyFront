@@ -12,6 +12,10 @@ export class ZwiazekService {
   constructor(private http: HttpClient) {
   }
 
+  public getAllZwiazki() {
+    return this.http.get(this.host + 'api/zwiazek');
+  }
+
   public getZwiazkiUzytkownik(idUser){
     return this.http.get(this.host + 'api/zwiazek/uzytkownik/' + idUser);
   }
