@@ -51,7 +51,7 @@
               </li>
             </ul>
           </div>
-            <ul class="list-group" *ngIf="this.odbiorca !== null" >
+            <ul class="list-group" *ngIf="this.odbiorca !== null && ban" >
               <li class="list-group-item active clearfix">
                 <input type="text" class="col-11 bg-white " [(ngModel)]="tresc" (keydown.enter)="addWiadomosc()" />
                 <div style=" padding: 0px 6px 6px 10px;"></div>  <button class="btn btn-success" (click)="addWiadomosc()">Wyślij</button>

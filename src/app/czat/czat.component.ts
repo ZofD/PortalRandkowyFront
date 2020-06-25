@@ -23,6 +23,7 @@ export class CzatComponent implements OnInit {
   uzytkownicy: Uzytkownik[] = [];
   konwersacja: Wiadomosci[] = [];
   tresc = '';
+  ban = true;
   wiadomosci: Wiadomosc[] = [];
   wzorzec = '';
   public profilowe: any[] = [];
@@ -67,14 +68,24 @@ export class CzatComponent implements OnInit {
 
   viewConversation(user: Uzytkownik) {
     this.odbiorca = user;
-    for (const zw of this.zwiazek) {
-      if (zw.uzytkownikA.id === user.id) {
+    for (const zw of this.zwiazek){
+      if (zw.zgodaBlokada < 3){
+        this.ban = true;
+      } else {
+        this.ban = false;
+      }
+      if (zw.uzytkownikA.id === user.id){
         this.view(zw.id);
         break;
       } else if (zw.uzytkownikB.id === user.id) {
         this.view(zw.id);
         break;
       }
+    }
+    if (this.odbiorca.uprawnienia === 2){
+      this.ban = false;
+    } else {
+      this.ban = true;
     }
   }
 
