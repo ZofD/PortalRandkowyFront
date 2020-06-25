@@ -22,6 +22,7 @@ export class BlogComponent implements OnInit {
   newZdjecia = {tytul: '', link: '', status: '1', opis: '', dataDodania: null, uzytkownik: this.zalogowanyUzytkownik};
   public uzytkownicy: any;
   public post: any;
+  public profilowe: any;
   public zwiazek: any;
   public dodajPost = false;
   public error = false;
@@ -60,6 +61,7 @@ export class BlogComponent implements OnInit {
         console.log(success);
         this.getAllPostsByUser();
         this.czyZnajomi();
+        this.getProfileImageByUser();
         this.ref.detectChanges();
       }, (error) => {
         console.log(error);
@@ -160,9 +162,19 @@ export class BlogComponent implements OnInit {
     });
   }
 
+  public getProfileImageByUser() {
+    this.zdjeciaService.getProfileImageByUser(this.uzytkownicy.id).subscribe((result) => {
+      this.profilowe = result;
+      console.log(result);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
   public deleteProfileImage() {
     this.zdjeciaService.deleteProfileImage(this.zalogowanyUzytkownik.id).subscribe((result: object[]) => {
       console.log(result);
+      this.getProfileImageByUser();
       this.getAllPostsByUser();
     }, (error) => {
       console.log(error);
@@ -183,6 +195,7 @@ export class BlogComponent implements OnInit {
     this.zdjeciaService.deleteImage(post).subscribe((success) => {
         console.log(success);
         this.getAllPostsByUser();
+        this.getProfileImageByUser();
       },
       (error) => {
         console.log(error);

@@ -1,17 +1,14 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-4 bg-img fake-img">
-      <div *ngFor="let post of post">
-        <div *ngIf="post.link !== '' && post.uzytkownik.id === uzytkownicy.id && post.status === 0">
 
-          <div style="background-image: url({{post.link}});" class="bg-img fake-img"></div>
+
+        <div *ngIf="profilowe === undefined || profilowe === null;  else jestProfilowe" class="col-4">
+
+          <div class="bg-img fake-img bg-dark"></div>
 
         </div>
-
-      </div>
-    </div>
-
+    <ng-template #jestProfilowe > <div class="col-4 ">  <div style="background-image: url({{profilowe.link}});" class="bg-img fake-img"></div></div></ng-template>
     <div *ngIf="uzytkownicy !== undefined && uzytkownicy.uprawnienia !== 2" class="col-8">
       <small>Nick</small>
       <h1>{{uzytkownicy.nick}}</h1>

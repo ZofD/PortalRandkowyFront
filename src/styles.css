@@ -37,11 +37,12 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 
 .portrait {
-  background-color: teal;
+  background-color: #343a40;
   padding: 20px;
-  border: 2px solid whitesmoke;
+  background-size: 40px;
+
   border-radius: 40%;
-  width: 0;
+
   float: left;
 }
 
