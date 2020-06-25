@@ -82,7 +82,7 @@ export class LogInComponent implements OnInit {
           console.log(this.error);
           this.userService.isLoggedIn.next(false);
           this.zalogowany = false;
-          console.error('error');
+          // console.error('error');
         }
       }, (error) => {
         this.error = true;
