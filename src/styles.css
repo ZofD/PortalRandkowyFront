@@ -40,7 +40,8 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   background-color: #343a40;
   padding: 20px;
   background-size: 40px;
-
+background-repeat: no-repeat;
+  background-position: center;
   border-radius: 40%;
 
   float: left;
